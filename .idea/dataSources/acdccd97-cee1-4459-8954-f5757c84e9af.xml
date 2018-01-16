@@ -15,58 +15,79 @@
     <schema id="9" parent="1" name="sakila"/>
     <schema id="10" parent="1" name="test"/>
     <schema id="11" parent="1" name="world"/>
-    <table id="12" parent="2" name="user"/>
-    <column id="13" parent="12" name="password">
+    <table id="12" parent="2" name="firstlevel"/>
+    <table id="13" parent="2" name="user"/>
+    <column id="14" parent="12" name="firstId">
+      <Position>1</Position>
+      <Comment>一级分类的id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="15" parent="12" name="firstName">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="16" parent="12" name="firstImageName">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="14" parent="12" name="uid">
+    <key id="17" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>firstId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="18" parent="13" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="19" parent="13" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="12" name="sex">
+    <column id="20" parent="13" name="sex">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="16" parent="12" name="phone">
+    <column id="21" parent="13" name="phone">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="17" parent="12" name="email">
+    <column id="22" parent="13" name="email">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="18" parent="12" name="sign">
+    <column id="23" parent="13" name="sign">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="19" parent="12" name="imageName">
+    <column id="24" parent="13" name="imageName">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="20" parent="12" name="grade">
+    <column id="25" parent="13" name="grade">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="21" parent="12" name="city">
+    <column id="26" parent="13" name="city">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="22" parent="12" name="birth">
+    <column id="27" parent="13" name="birth">
       <Position>12</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="23" parent="12" name="userName">
+    <column id="28" parent="13" name="userName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="24" parent="12" name="hobby">
+    <column id="29" parent="13" name="hobby">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="25" parent="12" name="PRIMARY">
+    <key id="30" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
