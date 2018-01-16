@@ -20,19 +20,55 @@
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="14" parent="12" name="id">
+    <column id="14" parent="12" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="12" name="user_name">
+    <column id="15" parent="12" name="sex">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="16" parent="12" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="17" parent="12" name="email">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="18" parent="12" name="sign">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="19" parent="12" name="imageName">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="20" parent="12" name="grade">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="21" parent="12" name="city">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="22" parent="12" name="birth">
+      <Position>12</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="23" parent="12" name="userName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="16" parent="12" name="PRIMARY">
+    <column id="24" parent="12" name="hobby">
+      <Position>11</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="25" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

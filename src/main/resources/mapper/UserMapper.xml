@@ -2,9 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wanban.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.wanban.pojo.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="imageName" jdbcType="VARCHAR" property="imageName" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="hobby" jdbcType="VARCHAR" property="hobby" />
+    <result column="birth" jdbcType="DATE" property="birth" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_name, password
+    uid, userName, password, sex, phone, email, sign, imageName, grade, city, hobby, 
+    birth
   </sql>
   <select id="selectByExample" parameterType="com.wanban.pojo.UserExample" resultMap="BaseResultMap">
     select
@@ -85,11 +95,11 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.wanban.pojo.UserExample">
     delete from user
@@ -98,33 +108,91 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wanban.pojo.User">
-    insert into user (id, user_name, password
-      )
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
+    insert into user (uid, userName, password, 
+      sex, phone, email, 
+      sign, imageName, grade, 
+      city, hobby, birth)
+    values (#{uid,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER},
+      #{city,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{birth,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="uid != null">
+        uid,
       </if>
       <if test="userName != null">
-        user_name,
+        userName,
       </if>
       <if test="password != null">
         password,
       </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="imageName != null">
+        imageName,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="hobby != null">
+        hobby,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null">
+        #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -137,14 +205,41 @@
   <update id="updateByExampleSelective" parameterType="map">
     update user
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
       </if>
       <if test="record.userName != null">
-        user_name = #{record.userName,jdbcType=VARCHAR},
+        userName = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sign != null">
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageName != null">
+        imageName = #{record.imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null">
+        grade = #{record.grade,jdbcType=INTEGER},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hobby != null">
+        hobby = #{record.hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birth != null">
+        birth = #{record.birth,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -153,9 +248,18 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set id = #{record.id,jdbcType=INTEGER},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+    set uid = #{record.uid,jdbcType=INTEGER},
+      userName = #{record.userName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      imageName = #{record.imageName,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=VARCHAR},
+      hobby = #{record.hobby,jdbcType=VARCHAR},
+      birth = #{record.birth,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -164,18 +268,54 @@
     update user
     <set>
       <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+        userName = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null">
+        imageName = #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        hobby = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wanban.pojo.User">
     update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set userName = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      imageName = #{imageName,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE}
+    where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>
