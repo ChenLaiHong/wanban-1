@@ -83,7 +83,7 @@
 <body>
 <DIV class="top_div">
 </DIV>
-<form action="" method="post" onsubmit="return checkForm()">
+<form action="${pageContext.request.contextPath}/admin/login" method="post" onsubmit="return checkForm()">
     <DIV style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 200px; text-align: center;">
 
         <P style="padding: 30px 0px 10px; position: relative;">
@@ -97,7 +97,7 @@
         <DIV style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
             <P style="margin: 0px 35px 20px 45px;">
                 <SPAN style="float: left;">后台管理系统</SPAN>
-                <span><font color="red" id="error">${errorInfo }</font></span>
+                <span><font color="red" id="error">${result.msg}</font></span>
                 <SPAN style="float: right;">
 	              <input type="submit" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: #FFB7DD; font-weight: bold;" value="登录"/>
 	         </SPAN>

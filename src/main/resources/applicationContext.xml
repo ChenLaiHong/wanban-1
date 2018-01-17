@@ -28,7 +28,7 @@
     </bean>
 
     <!-- 配置和MyBatis的整合 -->
-    <bean id="ysqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <property name="dataSource" ref="pooledDataSource"></property>
 
@@ -40,12 +40,12 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 扫描所有dao接口的实现加入到ioc容器中 -->
         <property name="basePackage" value="com.wanban.dao"></property>
-        <property name="sqlSessionFactoryBeanName" value="ysqlSessionFactory" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
     <!-- 配置一个可以执行批量的SQLSession-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg name="sqlSessionFactory" ref="ysqlSessionFactory"></constructor-arg>
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
         <constructor-arg name="executorType" value="BATCH"></constructor-arg>
     </bean>
 
