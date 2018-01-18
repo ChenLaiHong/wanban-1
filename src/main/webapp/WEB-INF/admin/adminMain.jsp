@@ -70,22 +70,22 @@
 <div region="west" style="width: 200px" title="导航菜单" split="true">
     <div class="easyui-accordion" data-options="fit:true,border:false">
         <div title="常用操作" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
-            <a href="javascript:openTab('注册用户管理','xxx','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">注册用户管理</a>
+            <a href="javascript:openTab('注册用户管理','toAdminUser.do','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">注册用户管理</a>
             <a href="javascript:openTab('一级信息管理','xxx','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">一级信息管理</a>
             <a href="javascript:openTab('二级信息管理','xxx','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">二级信息管理</a>
         </div>
-        <div title="博客管理"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
-            <a href="javascript:openTab('博客信息管理','toAdminBlogLook.do','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">博客信息管理</a>
+        <div title="xxx"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
+            <a href="javascript:openTab('xxx','xxx','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">博客信息管理</a>
         </div>
-        <div title="博客类别管理" data-options="iconCls:'icon-bklb'" style="padding:10px">
-            <a href="javascript:openTab('博客类别信息管理','toAdminBlogType.do','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
+        <div title="xxx" data-options="iconCls:'icon-bklb'" style="padding:10px">
+            <a href="javascript:openTab('xxx','xxx','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
         </div>
-        <div title="评论管理"  data-options="iconCls:'icon-plgl'" style="padding:10px">
-            <a href="javascript:openTab('评论审核','toAdminCommentRead.do','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论审核</a>
-            <a href="javascript:openTab('评论信息管理','toAdminComment.do','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">评论信息管理</a>
+        <div title="xxx"  data-options="iconCls:'icon-plgl'" style="padding:10px">
+            <a href="javascript:openTab('xxx','xxx','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论审核</a>
+            <a href="javascript:openTab('xxx','xxx','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">评论信息管理</a>
         </div>
-        <div title="系统管理"  data-options="iconCls:'icon-system'" style="padding:10px">
-            <a href="javascript:openTab('友情链接管理','toAdminLink.do','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">友情链接管理</a>
+        <div title="xxx"  data-options="iconCls:'icon-system'" style="padding:10px">
+            <a href="javascript:openTab('xxx','xxx','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">友情链接管理</a>
             <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
         </div>
     </div>

@@ -12,4 +12,8 @@ public class PageController {
     public String adminLogin(){
         return "admin/adminLogin";
     }
+    @RequestMapping({"/toAdminUser"})
+    public String adminUser(){
+        return "admin/adminUser";
+    }
 }

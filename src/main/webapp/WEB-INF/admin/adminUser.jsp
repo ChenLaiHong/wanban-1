@@ -26,14 +26,14 @@
     <tr>
         <th field="cb" checkbox="true" align="center"></th>
         <th field="userId" width="20" align="center">编号</th>
-        <th field="userName" width="100" align="center">用户名</th>
+        <th field="userName" width="30" align="center">用户名</th>
         <th field="sex" width="20" align="center">性别</th>
         <th field="grade" width="20" align="center">等级</th>
         <th field="city" width="20" align="center">城市</th>
         <th field="phone" width="100" align="center">电话</th>
         <th field="email" width="100" align="center">邮箱</th>
         <th field="sign" width="100" align="center">个性签名</th>
-        <th field="createTime" width="20" align="center">注册时间</th>
+        <th field="createTime" width="40" align="center">注册时间</th>
     </tr>
     </thead>
 </table>
