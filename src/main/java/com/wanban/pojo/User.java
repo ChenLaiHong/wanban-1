@@ -3,7 +3,7 @@ package com.wanban.pojo;
 import java.util.Date;
 
 public class User {
-    private Integer uid;
+    private Integer userId;
 
     private String userName;
 
@@ -27,12 +27,14 @@ public class User {
 
     private Date birth;
 
-    public Integer getUid() {
-        return uid;
+    private Date createTime;
+
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -121,5 +123,13 @@ public class User {
 
     public void setBirth(Date birth) {
         this.birth = birth;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
