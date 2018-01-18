@@ -12,4 +12,12 @@ public interface FirstLevelService {
     List<FirstLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
+
+    int add(FirstLevel firstLevel);
+
+    int update(FirstLevel firstLevel);
+
+    int getFirstLevelId(int i);
+
+    void delete(int i);
 }

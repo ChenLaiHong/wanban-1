@@ -26,4 +26,14 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     public Long getTotal(Map<String, Object> map) {
         return firstLevelMapper.getTotal(map);
     }
+
+    @Override
+    public int add(FirstLevel firstLevel) {
+        return 0;
+    }
+
+    @Override
+    public int update(FirstLevel firstLevel) {
+        return 0;
+    }
 }
