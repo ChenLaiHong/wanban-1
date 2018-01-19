@@ -9,17 +9,19 @@
 <html>
 <head>
     <title>一级管理页面</title>
-
+    <%
+        pageContext.setAttribute("APP_PATH",request.getContextPath());
+    %>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
+          href="${APP_PATH}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
+          href="${APP_PATH}/static/jquery-easyui-1.3.3/themes/icon.css">
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
+            src="${APP_PATH}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+            src="${APP_PATH}/static/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+            src="${APP_PATH}/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 
     <script type="text/javascript">
 
@@ -38,7 +40,7 @@
             var ids=strIds.join(",");
             $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
                 if(r){
-                    $.post("${pageContext.request.contextPath}/admin/firstLevel/delete.do",{ids:ids},function(result){
+                    $.post("${APP_PATH}/admin/firstLevel/delete.do",{ids:ids},function(result){
                         if(result.success){
                             if(result.exist){
                                 $.messager.alert("系统提示",result.exist);
@@ -56,7 +58,7 @@
 
         function openFirstLevelAddDialog(){
             $("#dlg").dialog("open").dialog("setTitle","添加一级信息");
-            url="${pageContext.request.contextPath}/admin/firstLevel/save.do";
+            url="${APP_PATH}/admin/firstLevel/save.do";
         }
 
         function openFirstLevelModifyDialog(){
@@ -68,7 +70,7 @@
             var row=selectedRows[0];
             $("#dlg").dialog("open").dialog("setTitle","编辑博客类别信息");
             $("#fm").form("load",row);
-            url="${pageContext.request.contextPath}/admin/firstLevel/save.do?firstId="+row.firstId;
+            url="${APP_PATH}/admin/firstLevel/save.do?firstId="+row.firstId;
         }
 
         function saveFirstLevel(){
@@ -94,7 +96,7 @@
 
         function resetValue(){
             $("#firstName").val("");
-            $("#firstImageName").val("");
+            $("#imageFile").val("");
         }
 
         function closeFirstLevelDialog(){
@@ -106,7 +108,7 @@
             if(val){
                 return '<img src=static/images/'+val+' style=width:80px;height:50px;>'
             }else{
-                return '<img src=${pageContext.request.contextPath}/static/images/moren.png style=width:80px;height:50px;>'
+                return '<img src='+APP_PATH+'/static/images/moren.png style=width:80px;height:50px;>'
             }
         }
     </script>
@@ -116,13 +118,13 @@
 
 <table id="dg" title="博客类别管理" class="easyui-datagrid" fitColumns="true"
        pagination="true" rownumbers="true"
-       url="${pageContext.request.contextPath}/admin/firstLevel/list.do" fit="true" toolbar="#tb">
+       url="${APP_PATH}/admin/firstLevel/list.do" fit="true" toolbar="#tb">
     <thead>
     <tr>
         <th field="cb" checkbox="true" align="center"></th>
         <th field="firstId" width="20" align="center">编号</th>
-        <th field="firstName" width="20" align="center">一级名称</th>
-        <th field="firstImageName" width="20" align="center" data-options="formatter:formatImg">图片</th>
+        <th field="firstName" width="100" align="center">一级名称</th>
+        <th field="firstImageName" width="30" align="center" data-options="formatter:formatImg">图片</th>
     </tr>
     </thead>
 </table>
@@ -145,14 +147,14 @@
         <table cellspacing="8px">
             <tr>
                 <td>一级名称：</td>
-                <td><input type="text" id="typeName" name="typeName"
+                <td><input type="text" id="firstName" name="firstName"
                            class="easyui-validatebox" required="true" />
                 </td>
             </tr>
             <tr>
                 <td>图片：</td>
-                <td><input type="file" id="firstImageName" name="firstImageName"
-                           class="easyui-validatebox" />
+                <td><input type="file" id="imageFile" name="imageFile"
+                           class="easyui-validatebox" required="true"/>
                 </td>
             </tr>
 
@@ -161,9 +163,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveFirstLevel()" class="easyui-linkbutton"
-       iconCls="icon-ok">保存</a> <a href="javascript:closeFirstLevelDialog()"
-                                   class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveFirstLevel()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeFirstLevelDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 
 

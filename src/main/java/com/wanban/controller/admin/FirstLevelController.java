@@ -3,6 +3,7 @@ package com.wanban.controller.admin;
 import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.PageBean;
 import com.wanban.service.FirstLevelService;
+import com.wanban.service.SecondLevelService;
 import com.wanban.utils.DateUtil;
 import com.wanban.utils.ResponseUtil;
 import net.sf.json.JSONArray;
@@ -31,6 +32,9 @@ public class FirstLevelController {
     @Autowired
     private FirstLevelService firstLevelService;
 
+    @Autowired
+    private SecondLevelService secondLevelService;
+
     @RequestMapping("/firstLevel/list")
     public String firstList(@RequestParam(value = "page", required = false) String page,
                             @RequestParam(value = "rows", required = false) String rows,
@@ -55,6 +59,7 @@ public class FirstLevelController {
     public String save(@RequestParam("imageFile") MultipartFile imageFile,
                        FirstLevel firstLevel, HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
+        System.out.print("进来执行添加操作");
         int resultTotal = 0; // 操作的记录条数
         if (firstLevel.getFirstId() == null) {
             JudeImage(imageFile,firstLevel,request);
@@ -73,13 +78,13 @@ public class FirstLevelController {
         return null;
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/firstLevel/delete")
     public String delete(@RequestParam("ids") String ids,
                          HttpServletResponse response) throws Exception {
         String idsStr[] = ids.split(",");
         JSONObject result = new JSONObject();
         for (int i = 0; i < idsStr.length; i++) {
-            if (firstLevelService.getFirstLevelId(Integer.parseInt(idsStr[i])) > 0) {
+            if (secondLevelService.getFirstLevelId(Integer.parseInt(idsStr[i])) > 0) {
                 result.put("exist", "此级别下有二级，不能删除！");
             } else {
                 firstLevelService.delete(Integer.parseInt(idsStr[i]));

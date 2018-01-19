@@ -71,7 +71,7 @@
     <div class="easyui-accordion" data-options="fit:true,border:false">
         <div title="常用操作" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
             <a href="javascript:openTab('注册用户管理','toAdminUser.do','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">注册用户管理</a>
-            <a href="javascript:openTab('一级信息管理','xxx','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">一级信息管理</a>
+            <a href="javascript:openTab('一级信息管理','toFirstLevel.do','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">一级信息管理</a>
             <a href="javascript:openTab('二级信息管理','xxx','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">二级信息管理</a>
         </div>
         <div title="xxx"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">

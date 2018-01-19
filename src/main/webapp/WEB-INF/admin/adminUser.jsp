@@ -33,7 +33,7 @@
         <th field="phone" width="100" align="center">电话</th>
         <th field="email" width="100" align="center">邮箱</th>
         <th field="sign" width="100" align="center">个性签名</th>
-        <th field="createTime" width="40" align="center">注册时间</th>
+        <th field="createTime" width="100" align="center">注册时间</th>
     </tr>
     </thead>
 </table>

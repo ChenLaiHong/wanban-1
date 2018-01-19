@@ -17,7 +17,5 @@ public interface FirstLevelService {
 
     int update(FirstLevel firstLevel);
 
-    int getFirstLevelId(int i);
-
-    void delete(int i);
+    int delete(int i);
 }

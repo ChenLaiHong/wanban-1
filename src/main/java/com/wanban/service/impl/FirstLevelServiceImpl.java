@@ -29,11 +29,17 @@ public class FirstLevelServiceImpl implements FirstLevelService {
 
     @Override
     public int add(FirstLevel firstLevel) {
-        return 0;
+
+        return firstLevelMapper.insertSelective(firstLevel);
     }
 
     @Override
     public int update(FirstLevel firstLevel) {
-        return 0;
+        return firstLevelMapper.updateByPrimaryKeySelective(firstLevel);
+    }
+
+    @Override
+    public int delete(int i) {
+      return  firstLevelMapper.deleteByPrimaryKey(i);
     }
 }
