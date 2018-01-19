@@ -2,6 +2,7 @@ package com.wanban.service.impl;
 
 import com.wanban.dao.FirstLevelMapper;
 import com.wanban.pojo.FirstLevel;
+import com.wanban.pojo.FirstLevelExample;
 import com.wanban.service.FirstLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class FirstLevelServiceImpl implements FirstLevelService {
     @Autowired
     private FirstLevelMapper firstLevelMapper;
+
+    private FirstLevelExample firstLevelExample;
 
     @Override
     public List<FirstLevel> list(Map<String, Object> map) {
@@ -41,5 +44,10 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     @Override
     public int delete(int i) {
       return  firstLevelMapper.deleteByPrimaryKey(i);
+    }
+
+    @Override
+    public List<FirstLevel> countList() {
+        return firstLevelMapper.selectByExample(firstLevelExample);
     }
 }

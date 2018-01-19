@@ -55,12 +55,10 @@
                 }
             });
         }
-
         function openFirstLevelAddDialog(){
             $("#dlg").dialog("open").dialog("setTitle","添加一级信息");
             url="${APP_PATH}/admin/firstLevel/save.do";
         }
-
         function openFirstLevelModifyDialog(){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length!=1){
@@ -68,11 +66,10 @@
                 return;
             }
             var row=selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle","编辑博客类别信息");
+            $("#dlg").dialog("open").dialog("setTitle","编辑一级信息");
             $("#fm").form("load",row);
             url="${APP_PATH}/admin/firstLevel/save.do?firstId="+row.firstId;
         }
-
         function saveFirstLevel(){
             $("#fm").form("submit",{
                 url:url,
@@ -93,17 +90,14 @@
                 }
             });
         }
-
         function resetValue(){
             $("#firstName").val("");
             $("#imageFile").val("");
         }
-
         function closeFirstLevelDialog(){
             $("#dlg").dialog("close");
             resetValue();
         }
-
         function formatImg(val,row){
             if(val){
                 return '<img src=static/images/'+val+' style=width:80px;height:50px;>'
@@ -116,7 +110,7 @@
 <body style="margin: 1px">
 
 
-<table id="dg" title="博客类别管理" class="easyui-datagrid" fitColumns="true"
+<table id="dg" title="一级管理" class="easyui-datagrid" fitColumns="true"
        pagination="true" rownumbers="true"
        url="${APP_PATH}/admin/firstLevel/list.do" fit="true" toolbar="#tb">
     <thead>
@@ -142,7 +136,6 @@
 <div id="dlg" class="easyui-dialog"
      style="width:500px;height:280px;padding: 10px 20px" closed="true"
      buttons="#dlg-buttons">
-
     <form id="fm" method="post" enctype="multipart/form-data">
         <table cellspacing="8px">
             <tr>
@@ -157,7 +150,6 @@
                            class="easyui-validatebox" required="true"/>
                 </td>
             </tr>
-
         </table>
     </form>
 </div>

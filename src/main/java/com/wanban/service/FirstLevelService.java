@@ -18,4 +18,6 @@ public interface FirstLevelService {
     int update(FirstLevel firstLevel);
 
     int delete(int i);
+
+    List<FirstLevel> countList();
 }
