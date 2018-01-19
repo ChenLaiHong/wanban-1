@@ -1,7 +1,9 @@
 package com.wanban.test;
 
 import com.wanban.dao.FirstLevelMapper;
+import com.wanban.dao.SecondLevelMapper;
 import com.wanban.pojo.FirstLevel;
+import com.wanban.pojo.SecondLevel;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,12 +19,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class MapperTest {
     @Autowired
     FirstLevelMapper firstLevelMapper;
+
+    @Autowired
+    SecondLevelMapper secondLevelMapper;
+
     @Autowired
     SqlSession sqlSession;
     @Test
     public void testCRUD(){
-        System.out.print(firstLevelMapper);
-       firstLevelMapper.insert(new FirstLevel(1,"运动","20180116"));
+//        System.out.print(firstLevelMapper);
+//       firstLevelMapper.insert(new FirstLevel(1,"运动","20180116"));
+       SecondLevel secondLevel=secondLevelMapper.selectByPrimaryKey(1);
+       System.out.print("所属一级为："+secondLevel.getFirstLevel());
     }
 
 }

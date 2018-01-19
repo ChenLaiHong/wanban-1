@@ -1,6 +1,5 @@
 package com.wanban.controller.admin;
 
-import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.PageBean;
 import com.wanban.pojo.SecondLevel;
 import com.wanban.service.SecondLevelService;
@@ -26,7 +25,7 @@ public class SecondLevelController {
 
     @Autowired
     private SecondLevelService secondLevelService;
-
+//formatter="formatFirstLevel"
     @RequestMapping("/secondLevel/list")
     public String list(@RequestParam(value = "page", required = false) String page,
                        @RequestParam(value = "rows", required = false) String rows,
@@ -36,7 +35,7 @@ public class SecondLevelController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
-        List<FirstLevel> secondList = secondLevelService.list(map);
+        List<SecondLevel> secondList = secondLevelService.list(map);
         Long total = secondLevelService.getTotal(map);
         JSONObject result = new JSONObject();
         JSONArray jsonArray = JSONArray.fromObject(secondList);

@@ -1,6 +1,5 @@
 package com.wanban.service;
 
-import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.SecondLevel;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.Map;
 public interface SecondLevelService {
     int getFirstLevelId(int i);
 
-    List<FirstLevel> list(Map<String, Object> map);
+    List<SecondLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
 

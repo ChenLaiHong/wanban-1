@@ -24,7 +24,7 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     }
 
     @Override
-    public List<FirstLevel> list(Map<String, Object> map) {
+    public List<SecondLevel> list(Map<String, Object> map) {
         return secondLevelMapper.list(map);
     }
 
