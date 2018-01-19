@@ -17,8 +17,12 @@ public class PageController {
     public String adminUser(){
         return "admin/adminUser";
     }
+
     @RequestMapping({"/toFirstLevel"})
     public String firstLevel(){
         return "admin/adminFirstLevel";
     }
+
+    @RequestMapping({"/toSecondLevel"})
+    public String secondLevel(){return "admin/adminSecondLevel";}
 }

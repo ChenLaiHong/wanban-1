@@ -31,7 +31,7 @@
             });
         }
 
-        function deleteBlog(){
+        function deleteSecondLevel(){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length==0){
                 $.messager.alert("系统提示","请选择要删除的数据！");
@@ -55,9 +55,12 @@
                 }
             });
         }
+        function openSecondLevelAddDialog(){
+            $("#dlg").dialog("open").dialog("setTitle","添加二级信息");
+            url="${APP_PATH}/admin/secondLevel/save.do";
+        }
 
-
-        function openFirstLevelModifyDialog(){
+        function openSecondLevelModifyDialog(){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length!=1){
                 $.messager.alert("系统提示","请选择一条要编辑的数据！");
@@ -67,6 +70,35 @@
             $("#dlg").dialog("open").dialog("setTitle","编辑二级信息");
             $("#fm").form("load",row);
             url="${APP_PATH}/admin/secondLevel/save.do?secondId="+row.secondId;
+        }
+
+        function saveSecondLevel(){
+            $("#fm").form("submit",{
+                url:url,
+                onSubmit:function(){
+                    return $(this).form("validate");
+                },
+                success:function(result){
+                    var result=eval('('+result+')');
+                    if(result.success){
+                        $.messager.alert("系统提示","保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    }else{
+                        $.messager.alert("系统提示","保存失败！");
+                        return;
+                    }
+                }
+            });
+        }
+        function resetValue(){
+            $("#secondName").val("");
+            $("#imageFile").val("");
+        }
+        function closeSecondLevelDialog(){
+            $("#dlg").dialog("close");
+            resetValue();
         }
         function formatImg(val,row){
             if(val){
@@ -139,8 +171,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveFirstLevel()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeFirstLevelDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveSecondLevel()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeSecondLevelDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 
 </body>

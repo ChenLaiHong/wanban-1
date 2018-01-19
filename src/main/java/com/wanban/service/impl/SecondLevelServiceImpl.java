@@ -2,6 +2,7 @@ package com.wanban.service.impl;
 
 import com.wanban.dao.SecondLevelMapper;
 import com.wanban.pojo.FirstLevel;
+import com.wanban.pojo.SecondLevel;
 import com.wanban.service.SecondLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,21 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     public Long getTotal(Map<String, Object> map) {
         return secondLevelMapper.getTotal(map);
     }
-            }
+
+    @Override
+    public int deleteSecond(int i) {
+        return secondLevelMapper.deleteByPrimaryKey(i);
+    }
+
+    @Override
+    public int addSecond(SecondLevel secondLevel) {
+        return secondLevelMapper.insertSelective(secondLevel);
+    }
+
+    @Override
+    public int updateSecond(SecondLevel secondLevel) {
+        return secondLevelMapper.updateByPrimaryKeySelective(secondLevel);
+    }
+
+
+}
