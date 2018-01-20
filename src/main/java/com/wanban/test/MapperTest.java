@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by 赖红 on 2018/1/16.
  */
@@ -29,8 +33,7 @@ public class MapperTest {
     public void testCRUD(){
 //        System.out.print(firstLevelMapper);
 //       firstLevelMapper.insert(new FirstLevel(1,"运动","20180116"));
-       SecondLevel secondLevel=secondLevelMapper.selectByPrimaryKey(1);
-       System.out.print("所属一级为："+secondLevel.getFirstLevel());
+
     }
 
 }

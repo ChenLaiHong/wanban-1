@@ -25,7 +25,7 @@ public class SecondLevelController {
 
     @Autowired
     private SecondLevelService secondLevelService;
-//formatter="formatFirstLevel"
+
     @RequestMapping("/secondLevel/list")
     public String list(@RequestParam(value = "page", required = false) String page,
                        @RequestParam(value = "rows", required = false) String rows,

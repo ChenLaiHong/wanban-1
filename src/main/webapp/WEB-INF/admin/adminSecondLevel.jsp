@@ -102,7 +102,7 @@
         }
         function formatImg(val,row){
             if(val){
-                return '<img src=static/images/'+val+' style=width:80px;height:50px;>'
+                return '<img src=${APP_PATH}/static/images/'+val+' style=width:80px;height:50px;>'
             }else{
                 return '<img src='+APP_PATH+'/static/images/moren.png style=width:80px;height:50px;>'
             }
@@ -119,7 +119,7 @@
         <th field="cb" checkbox="true" align="center"></th>
         <th field="secondId" width="20" align="center">编号</th>
         <th field="secondName" width="50" align="center">二级名称</th>
-        <th field="firstId" width="50" align="center">所属一级</th>
+        <th field="firstLevel" width="50" align="center" formatter="formatFirstLevel">所属一级</th>
         <th field="secondImageName" width="30" align="center" data-options="formatter:formatImg">图片</th>
     </tr>
     </thead>

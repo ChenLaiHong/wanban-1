@@ -52,7 +52,7 @@
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="22" parent="13" name="first_id">
+    <column id="22" parent="13" name="firstId">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
