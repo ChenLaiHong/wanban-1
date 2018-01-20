@@ -3,7 +3,9 @@ package com.wanban.test;
 import com.wanban.dao.FirstLevelMapper;
 import com.wanban.dao.SecondLevelMapper;
 import com.wanban.pojo.FirstLevel;
+import com.wanban.pojo.FirstLevelExample;
 import com.wanban.pojo.SecondLevel;
+import com.wanban.pojo.SecondLevelExample;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,7 @@ public class MapperTest {
 
     @Autowired
     SecondLevelMapper secondLevelMapper;
+
 
     @Autowired
     SqlSession sqlSession;

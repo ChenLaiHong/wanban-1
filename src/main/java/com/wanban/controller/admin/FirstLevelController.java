@@ -21,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.wanban.utils.ImageUp.JudeImage;
-
 /**
  * Created by 赖红 on 2018/1/18.
  */
@@ -62,10 +60,24 @@ public class FirstLevelController {
         System.out.print("进来执行添加操作");
         int resultTotal = 0; // 操作的记录条数
         if (firstLevel.getFirstId() == null) {
-            JudeImage(imageFile,firstLevel,request);
+            if (!imageFile.isEmpty()) {
+                String filePath = request.getServletContext().getRealPath("/");
+                String imageName = DateUtil.getCurrentDateStr() + "."
+                        + imageFile.getOriginalFilename().split("\\.")[1];
+                imageFile.transferTo(new File(filePath + "static/images/"
+                        + imageName));
+                firstLevel.setFirstImageName(imageName );
+            }
             resultTotal = firstLevelService.add(firstLevel);
         } else {
-            JudeImage(imageFile,firstLevel,request);
+            if (!imageFile.isEmpty()) {
+                String filePath = request.getServletContext().getRealPath("/");
+                String imageName = DateUtil.getCurrentDateStr() + "."
+                        + imageFile.getOriginalFilename().split("\\.")[1];
+                imageFile.transferTo(new File(filePath + "static/images/"
+                        + imageName));
+                firstLevel.setFirstImageName(imageName );
+            }
             resultTotal = firstLevelService.update(firstLevel);
         }
         JSONObject result = new JSONObject();

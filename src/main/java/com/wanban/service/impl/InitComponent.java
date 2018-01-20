@@ -5,6 +5,7 @@ import com.wanban.service.FirstLevelService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by CHLaih on 2018/1/19.
  */
+@Component
 public class InitComponent implements ServletContextListener,ApplicationContextAware {
     private static ApplicationContext applicationContext;
 
@@ -26,7 +28,7 @@ public class InitComponent implements ServletContextListener,ApplicationContextA
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext application=servletContextEvent.getServletContext();
         FirstLevelService firstLevelService=(FirstLevelService) applicationContext.getBean("firstLevelService");
-        List<FirstLevel> firstLevelCountList=firstLevelService.countList(); // 查询博客类别以及博客的数量
+        List<FirstLevel> firstLevelCountList=firstLevelService.countList();
         application.setAttribute("firstLevelCountList", firstLevelCountList);
     }
 

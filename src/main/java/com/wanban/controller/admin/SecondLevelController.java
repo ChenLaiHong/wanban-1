@@ -1,8 +1,11 @@
 package com.wanban.controller.admin;
 
+import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.PageBean;
 import com.wanban.pojo.SecondLevel;
+import com.wanban.service.FirstLevelService;
 import com.wanban.service.SecondLevelService;
+import com.wanban.utils.DateUtil;
 import com.wanban.utils.ResponseUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -10,11 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.wanban.utils.ImageUp.JudeImage;
 
 /**
  * Created by CHLaih on 2018/1/18.
@@ -26,12 +35,19 @@ public class SecondLevelController {
     @Autowired
     private SecondLevelService secondLevelService;
 
+    @Autowired
+    private FirstLevelService firstLevelService;
     @RequestMapping("/secondLevel/list")
     public String list(@RequestParam(value = "page", required = false) String page,
                        @RequestParam(value = "rows", required = false) String rows,
-                       HttpServletResponse response) throws Exception {
+                       HttpServletResponse response,HttpServletRequest request) throws Exception {
         PageBean pageBean = new PageBean(Integer.parseInt(page),
                 Integer.parseInt(rows));
+        List<FirstLevel> firstLevelCountList=firstLevelService.countList();
+        request.getSession().setAttribute("firstLevelCountList", firstLevelCountList);
+//        ServletContext application=servletContextEvent.getServletContext();
+//        List<FirstLevel> firstLevelCountList=firstLevelService.countList();
+//        application.setAttribute("firstLevelCountList", firstLevelCountList);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
@@ -46,11 +62,27 @@ public class SecondLevelController {
     }
 
     @RequestMapping("/secondLevel/save")
-    public String save(SecondLevel secondLevel, HttpServletResponse response)throws Exception{
+    public String save(@RequestParam("imageFile") MultipartFile imageFile, SecondLevel secondLevel, HttpServletRequest request, HttpServletResponse response)throws Exception{
         int resultTotal=0; // 操作的记录条数
         if(secondLevel.getSecondId()==null){
+            if (!imageFile.isEmpty()) {
+                String filePath = request.getServletContext().getRealPath("/");
+                String imageName = DateUtil.getCurrentDateStr() + "."
+                        + imageFile.getOriginalFilename().split("\\.")[1];
+                imageFile.transferTo(new File(filePath + "static/images/"
+                        + imageName));
+                secondLevel.setSecondImageName(imageName );
+            }
             resultTotal=secondLevelService.addSecond(secondLevel);
         }else{
+            if (!imageFile.isEmpty()) {
+                String filePath = request.getServletContext().getRealPath("/");
+                String imageName = DateUtil.getCurrentDateStr() + "."
+                        + imageFile.getOriginalFilename().split("\\.")[1];
+                imageFile.transferTo(new File(filePath + "static/images/"
+                        + imageName));
+                secondLevel.setSecondImageName(imageName );
+            }
             resultTotal=secondLevelService.updateSecond(secondLevel);
         }
         JSONObject result=new JSONObject();

@@ -116,6 +116,7 @@
        url="${APP_PATH}/admin/secondLevel/list.do" fit="true" toolbar="#tb">
     <thead>
     <tr>
+        <th field="firstLevelCountList" hidden></th>
         <th field="cb" checkbox="true" align="center"></th>
         <th field="secondId" width="20" align="center">编号</th>
         <th field="secondName" width="50" align="center">二级名称</th>

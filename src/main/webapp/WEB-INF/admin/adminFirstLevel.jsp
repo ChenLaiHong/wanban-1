@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>一级管理页面</title>
@@ -100,9 +101,9 @@
         }
         function formatImg(val,row){
             if(val){
-                return '<img src=static/images/'+val+' style=width:80px;height:50px;>'
+                return '<img src=static/levelImages/'+val+' style=width:80px;height:50px;>'
             }else{
-                return '<img src='+APP_PATH+'/static/images/moren.png style=width:80px;height:50px;>'
+                return '<img src='+APP_PATH+'/static/levelImages/moren.png style=width:80px;height:50px;>'
             }
         }
     </script>
@@ -137,6 +138,7 @@
      style="width:500px;height:280px;padding: 10px 20px" closed="true"
      buttons="#dlg-buttons">
     <form id="fm" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="firstImageName" value="${firstImageName}">
         <table cellspacing="8px">
             <tr>
                 <td>一级名称：</td>
@@ -148,6 +150,7 @@
                 <td>图片：</td>
                 <td><input type="file" id="imageFile" name="imageFile"
                            class="easyui-validatebox" required="true"/>
+                    <img src=static/levelImages/'+${firstImageName}+' style=width:40px;height:40px;>
                 </td>
             </tr>
         </table>
