@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
     public Long getTotal(Map<String, Object> map) {
         return userMapper.getTotal(map);
     }
+
+    @Override
+    public List<User> getAllUser() {
+        return userMapper.selectByExample(null);
+    }
 }

@@ -53,5 +53,10 @@ public class SecondLevelServiceImpl implements SecondLevelService{
         return secondLevelMapper.selectByPrimaryKey(secondId).getSecondImageName();
     }
 
+    @Override
+    public List<SecondLevel> getAllSecond() {
+        return secondLevelMapper.selectByExample(null);
+    }
+
 
 }

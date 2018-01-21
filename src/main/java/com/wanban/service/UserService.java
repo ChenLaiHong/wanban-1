@@ -13,4 +13,6 @@ public interface UserService {
     List<User> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
+
+    List<User> getAllUser();
 }
