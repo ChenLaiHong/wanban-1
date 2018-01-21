@@ -137,6 +137,12 @@
             }
         }
 
+        function searchSecondLevel(){
+            $("#dg").datagrid('load',{
+                "secondName":$("#s_title").val()
+            });
+        }
+
     </script>
 </head>
 <body style="margin: 1px">
@@ -145,9 +151,8 @@
        url="${APP_PATH}/admin/secondLevel/list.do" fit="true" toolbar="#tb">
     <thead>
     <tr>
-        <th field="firstLevelCountList" hidden></th>
         <th field="cb" checkbox="true" align="center"></th>
-        <th field="secondId" width="20" align="center">编号</th>
+        <th field="secondId" width="20" align="center" hidden>编号</th>
         <th field="secondName" width="50" align="center">二级名称</th>
         <th field="firstLevel" width="50" align="center" formatter="formatFirstLevel">所属一级</th>
         <th field="secondImageName" width="30" align="center" data-options="formatter:formatImg">图片</th>
@@ -156,12 +161,9 @@
 </table>
 <div id="tb">
     <div>
-        <a href="javascript:openSecondLevelAddDialog()"
-           class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> <a
-            href="javascript:openSecondLevelModifyDialog()"
-            class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> <a
-            href="javascript:deleteSecondLevel()" class="easyui-linkbutton"
-            iconCls="icon-remove" plain="true">删除</a>
+        <a href="javascript:openSecondLevelAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openSecondLevelModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="javascript:deleteSecondLevel()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
         &nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchSecondLevel()"/>

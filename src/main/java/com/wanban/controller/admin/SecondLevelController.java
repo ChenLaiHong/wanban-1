@@ -8,6 +8,7 @@ import com.wanban.service.FirstLevelService;
 import com.wanban.service.SecondLevelService;
 import com.wanban.utils.DateUtil;
 import com.wanban.utils.ResponseUtil;
+import com.wanban.utils.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,13 @@ public class SecondLevelController {
     private FirstLevelService firstLevelService;
     @RequestMapping("/secondLevel/list")
     public String list(@RequestParam(value = "page", required = false) String page,
-                       @RequestParam(value = "rows", required = false) String rows,
+                       @RequestParam(value = "rows", required = false) String rows,SecondLevel a_secondLevel,
                        HttpServletResponse response,HttpServletRequest request) throws Exception {
         PageBean pageBean = new PageBean(Integer.parseInt(page),
                 Integer.parseInt(rows));
-        List<FirstLevel> firstLevelCountList=firstLevelService.countList();
-        request.getSession().setAttribute("firstLevelCountList", firstLevelCountList);
-//        ServletContext application=servletContextEvent.getServletContext();
-//        List<FirstLevel> firstLevelCountList=firstLevelService.countList();
-//        application.setAttribute("firstLevelCountList", firstLevelCountList);
+
         Map<String, Object> map = new HashMap<String, Object>();
+        map.put("secondName", StringUtil.formatLike(a_secondLevel.getSecondName()));
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<SecondLevel> secondList = secondLevelService.list(map);
