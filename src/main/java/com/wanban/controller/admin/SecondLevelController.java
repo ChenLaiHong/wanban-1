@@ -1,6 +1,7 @@
 package com.wanban.controller.admin;
 
 import com.wanban.pojo.FirstLevel;
+import com.wanban.pojo.Massage;
 import com.wanban.pojo.PageBean;
 import com.wanban.pojo.SecondLevel;
 import com.wanban.service.FirstLevelService;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
@@ -69,7 +71,7 @@ public class SecondLevelController {
                 String filePath = request.getServletContext().getRealPath("/");
                 String imageName = DateUtil.getCurrentDateStr() + "."
                         + imageFile.getOriginalFilename().split("\\.")[1];
-                imageFile.transferTo(new File(filePath + "static/images/"
+                imageFile.transferTo(new File(filePath + "static/levelImages/"
                         + imageName));
                 secondLevel.setSecondImageName(imageName );
             }
@@ -79,7 +81,7 @@ public class SecondLevelController {
                 String filePath = request.getServletContext().getRealPath("/");
                 String imageName = DateUtil.getCurrentDateStr() + "."
                         + imageFile.getOriginalFilename().split("\\.")[1];
-                imageFile.transferTo(new File(filePath + "static/images/"
+                imageFile.transferTo(new File(filePath + "static/levelImages/"
                         + imageName));
                 secondLevel.setSecondImageName(imageName );
             }
@@ -105,5 +107,12 @@ public class SecondLevelController {
         result.put("success", true);
         ResponseUtil.write(response, result);
         return null;
+    }
+
+    @RequestMapping("/secondLevel/Image")
+    @ResponseBody
+    public Massage getImageName(@RequestParam(value="secondId")int secondId){
+        String imageName = secondLevelService.getImageName(secondId);
+        return Massage.success().add("imageName",imageName);
     }
 }

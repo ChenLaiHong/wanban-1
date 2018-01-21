@@ -67,16 +67,25 @@
                 url:"${APP_PATH}/getAllFirstLevel.do",
                 type:"POST",
                 success:function (result) {
-                   // console.log(result)
-                   // $("#dlg select")
                     $.each(result.extend.firstLevelList,function () {
-                        var firstLevel = $("<option></option>").append(this.firstName).attr("value",this.firstId).attr("name",this.firstId);
+                        var firstLevel = $("<option></option>").append(this.firstName).attr("value",this.firstId);
                         firstLevel.appendTo("#first");
                     });
-
                 }
-
             });
+        }
+        //加载图片
+        function getImageName(row) {
+            $.ajax({
+                url:"${APP_PATH}/admin/secondLevel/Image.do?secondId="+row.secondId,
+                type:"POST",
+                success:function (result) {
+                    console.log(result);
+                    var url = '${APP_PATH}/static/levelImages/'+result.extend.imageName;
+                    upload.src = url;
+                }
+            });
+
         }
         function openSecondLevelModifyDialog(){
             var selectedRows=$("#dg").datagrid("getSelections");
@@ -85,6 +94,8 @@
                 return;
             }
             var row=selectedRows[0];
+            getFirstLevel();
+            getImageName(row);
             $("#dlg").dialog("open").dialog("setTitle","编辑二级信息");
             $("#fm").form("load",row);
             url="${APP_PATH}/admin/secondLevel/save.do?secondId="+row.secondId;
@@ -120,9 +131,9 @@
         }
         function formatImg(val,row){
             if(val){
-                return '<img src=${APP_PATH}/static/images/'+val+' style=width:80px;height:50px;>'
+                return '<img src=${APP_PATH}/static/levelImages/'+val+' style=width:80px;height:50px;>'
             }else{
-                return '<img src='+APP_PATH+'/static/images/moren.png style=width:80px;height:50px;>'
+                return '<img src='+APP_PATH+'/static/levelImages/moren.png style=width:80px;height:50px;>'
             }
         }
 
@@ -171,13 +182,15 @@
             <tr>
                 <td>所属一级：</td>
                 <td>
-                    <select id="first" style="width: 154px"></select>
+                    <select id="first" name="firstId" style="width: 154px"></select>
                 </td>
             </tr>
             <tr>
                 <td>图片：</td>
                 <td><input type="file" id="imageFile" name="imageFile"
-                           class="easyui-validatebox" required="true"/>
+                           class="easyui-validatebox"/>
+                    <img id="upload" src="" alt=" " style="height: 50px;width: 50px"/>
+                    <input id="image" name="secondImageName" type="hidden" value="${secondLevel.secondImageName}">
                 </td>
             </tr>
         </table>

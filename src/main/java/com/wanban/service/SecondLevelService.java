@@ -20,4 +20,6 @@ public interface SecondLevelService {
     int addSecond(SecondLevel secondLevel);
 
     int updateSecond(SecondLevel secondLevel);
+
+    String getImageName(Integer secondId);
 }
