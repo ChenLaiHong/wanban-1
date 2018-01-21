@@ -13,6 +13,7 @@
     <%
         pageContext.setAttribute("APP_PATH",request.getContextPath());
     %>
+
     <link rel="stylesheet" type="text/css" href="${APP_PATH}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${APP_PATH}/static/jquery-easyui-1.3.3/themes/icon.css">
     <script type="text/javascript" src="${APP_PATH}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -56,10 +57,27 @@
             });
         }
         function openSecondLevelAddDialog(){
+              getFirstLevel();
             $("#dlg").dialog("open").dialog("setTitle","添加二级信息");
-            url="${APP_PATH}/admin/secondLevel/save.do";
+           url="${APP_PATH}/admin/secondLevel/save.do";
         }
+       //查询一级信息
+        function getFirstLevel() {
+            $.ajax({
+                url:"${APP_PATH}/getAllFirstLevel.do",
+                type:"POST",
+                success:function (result) {
+                   // console.log(result)
+                   // $("#dlg select")
+                    $.each(result.extend.firstLevelList,function () {
+                        var firstLevel = $("<option></option>").append(this.firstName).attr("value",this.firstId).attr("name",this.firstId);
+                        firstLevel.appendTo("#first");
+                    });
 
+                }
+
+            });
+        }
         function openSecondLevelModifyDialog(){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length!=1){
@@ -74,7 +92,7 @@
 
         function saveSecondLevel(){
             $("#fm").form("submit",{
-                url:url,
+              url:url,
                 onSubmit:function(){
                     return $(this).form("validate");
                 },
@@ -153,12 +171,7 @@
             <tr>
                 <td>所属一级：</td>
                 <td>
-                    <select class="easyui-combobox" style="width: 154px" id="firstId" name="firstId" editable="false" panelHeight="auto" >
-                        <option value="">请选择所属一级...</option>
-                        <c:forEach var="firstLevel" items="${firstLevelCountList }">
-                            <option value="${firstLevel.firstId }">${firstLevel.firstName }</option>
-                        </c:forEach>
-                    </select>
+                    <select id="first" style="width: 154px"></select>
                 </td>
             </tr>
             <tr>

@@ -57,9 +57,11 @@
             });
         }
         function openFirstLevelAddDialog(){
+
             $("#dlg").dialog("open").dialog("setTitle","添加一级信息");
             url="${APP_PATH}/admin/firstLevel/save.do";
         }
+
         function openFirstLevelModifyDialog(){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length!=1){

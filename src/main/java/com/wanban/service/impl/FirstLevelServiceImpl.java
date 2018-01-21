@@ -50,4 +50,10 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     public List<FirstLevel> countList() {
         return firstLevelMapper.selectByExample(firstLevelExample);
     }
+
+    @Override
+    public List<FirstLevel> getAllFirstLevel() {
+        List<FirstLevel> list = firstLevelMapper.selectByExample(null);
+        return  list;
+    }
 }
