@@ -3,12 +3,20 @@
 <mapper namespace="com.wanban.dao.FeedBackMapper">
   <resultMap id="BaseResultMap" type="com.wanban.pojo.FeedBack">
     <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
     <result column="question_time" jdbcType="TIMESTAMP" property="questionTime" />
     <result column="question_status" jdbcType="INTEGER" property="questionStatus" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wanban.pojo.FeedBack">
-    <result column="question_content" jdbcType="LONGVARCHAR" property="questionContent" />
+
+  <resultMap id="FeedBackResultMap" type="com.wanban.pojo.FeedBack">
+    <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
+    <result column="question_time" jdbcType="TIMESTAMP" property="questionTime" />
+    <result column="question_status" jdbcType="INTEGER" property="questionStatus" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <association property="user" column="user_id" select="com.wanban.dao.UserMapper.selectByPrimaryKey"></association>
+
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,27 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    question_id, question_time, question_status, user_id
+    question_id, question_content, question_time, question_status, user_id
   </sql>
-  <sql id="Blob_Column_List">
-    question_content
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.wanban.pojo.FeedBackExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from feedback
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.wanban.pojo.FeedBackExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -104,14 +93,35 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from feedback
     where question_id = #{questionId,jdbcType=INTEGER}
   </select>
+
+  <!-- list集合 -->
+  <select id="list" parameterType="Map" resultMap="FeedBackResultMap">
+    select * from feedback
+    <where>
+      <if test="questionStatus!=null">
+        and questionStatus=#{question_status}
+      </if>
+      <if test="userId!=null and userId!='' ">
+        and userId = #{user_id}
+      </if>
+    </where>
+    order by question_time DESC
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
+  <!-- getTotal -->
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from feedback
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from feedback
     where question_id = #{questionId,jdbcType=INTEGER}
@@ -123,16 +133,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wanban.pojo.FeedBack">
-    insert into feedback (question_id, question_time, question_status, 
-      user_id, question_content)
-    values (#{questionId,jdbcType=INTEGER}, #{questionTime,jdbcType=TIMESTAMP}, #{questionStatus,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{questionContent,jdbcType=LONGVARCHAR})
+    insert into feedback (question_id, question_content, question_time, 
+      question_status, user_id)
+    values (#{questionId,jdbcType=INTEGER}, #{questionContent,jdbcType=VARCHAR}, #{questionTime,jdbcType=TIMESTAMP}, 
+      #{questionStatus,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.FeedBack">
     insert into feedback
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="questionId != null">
         question_id,
+      </if>
+      <if test="questionContent != null">
+        question_content,
       </if>
       <if test="questionTime != null">
         question_time,
@@ -143,13 +156,13 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="questionContent != null">
-        question_content,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="questionId != null">
         #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="questionContent != null">
+        #{questionContent,jdbcType=VARCHAR},
       </if>
       <if test="questionTime != null">
         #{questionTime,jdbcType=TIMESTAMP},
@@ -159,9 +172,6 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="questionContent != null">
-        #{questionContent,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -177,6 +187,9 @@
       <if test="record.questionId != null">
         question_id = #{record.questionId,jdbcType=INTEGER},
       </if>
+      <if test="record.questionContent != null">
+        question_content = #{record.questionContent,jdbcType=VARCHAR},
+      </if>
       <if test="record.questionTime != null">
         question_time = #{record.questionTime,jdbcType=TIMESTAMP},
       </if>
@@ -186,21 +199,7 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.questionContent != null">
-        question_content = #{record.questionContent,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update feedback
-    set question_id = #{record.questionId,jdbcType=INTEGER},
-      question_time = #{record.questionTime,jdbcType=TIMESTAMP},
-      question_status = #{record.questionStatus,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      question_content = #{record.questionContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -208,6 +207,7 @@
   <update id="updateByExample" parameterType="map">
     update feedback
     set question_id = #{record.questionId,jdbcType=INTEGER},
+      question_content = #{record.questionContent,jdbcType=VARCHAR},
       question_time = #{record.questionTime,jdbcType=TIMESTAMP},
       question_status = #{record.questionStatus,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER}
@@ -218,6 +218,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.wanban.pojo.FeedBack">
     update feedback
     <set>
+      <if test="questionContent != null">
+        question_content = #{questionContent,jdbcType=VARCHAR},
+      </if>
       <if test="questionTime != null">
         question_time = #{questionTime,jdbcType=TIMESTAMP},
       </if>
@@ -227,23 +230,13 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="questionContent != null">
-        question_content = #{questionContent,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where question_id = #{questionId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wanban.pojo.FeedBack">
-    update feedback
-    set question_time = #{questionTime,jdbcType=TIMESTAMP},
-      question_status = #{questionStatus,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER},
-      question_content = #{questionContent,jdbcType=LONGVARCHAR}
     where question_id = #{questionId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wanban.pojo.FeedBack">
     update feedback
-    set question_time = #{questionTime,jdbcType=TIMESTAMP},
+    set question_content = #{questionContent,jdbcType=VARCHAR},
+      question_time = #{questionTime,jdbcType=TIMESTAMP},
       question_status = #{questionStatus,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER}
     where question_id = #{questionId,jdbcType=INTEGER}

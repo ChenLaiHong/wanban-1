@@ -27,4 +27,9 @@ public class PageController {
     @RequestMapping({"/toSecondLevel"})
     public String secondLevel(){
         return "admin/adminSecondLevel";}
+
+    @RequestMapping({"/toCheckStatus"})
+    public String checkStatus(){
+        return "admin/adminStatus";
+    }
 }

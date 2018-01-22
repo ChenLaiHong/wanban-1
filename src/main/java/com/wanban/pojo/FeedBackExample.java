@@ -165,6 +165,76 @@ public class FeedBackExample {
             return (Criteria) this;
         }
 
+        public Criteria andQuestionContentIsNull() {
+            addCriterion("question_content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentIsNotNull() {
+            addCriterion("question_content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentEqualTo(String value) {
+            addCriterion("question_content =", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentNotEqualTo(String value) {
+            addCriterion("question_content <>", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentGreaterThan(String value) {
+            addCriterion("question_content >", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentGreaterThanOrEqualTo(String value) {
+            addCriterion("question_content >=", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentLessThan(String value) {
+            addCriterion("question_content <", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentLessThanOrEqualTo(String value) {
+            addCriterion("question_content <=", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentLike(String value) {
+            addCriterion("question_content like", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentNotLike(String value) {
+            addCriterion("question_content not like", value, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentIn(List<String> values) {
+            addCriterion("question_content in", values, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentNotIn(List<String> values) {
+            addCriterion("question_content not in", values, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentBetween(String value1, String value2) {
+            addCriterion("question_content between", value1, value2, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionContentNotBetween(String value1, String value2) {
+            addCriterion("question_content not between", value1, value2, "questionContent");
+            return (Criteria) this;
+        }
+
         public Criteria andQuestionTimeIsNull() {
             addCriterion("question_time is null");
             return (Criteria) this;

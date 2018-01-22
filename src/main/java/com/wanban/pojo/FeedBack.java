@@ -5,13 +5,13 @@ import java.util.Date;
 public class FeedBack {
     private Integer questionId;
 
+    private String questionContent;
+
     private Date questionTime;
 
     private Integer questionStatus;
 
     private Integer userId;
-
-    private String questionContent;
 
     public Integer getQuestionId() {
         return questionId;
@@ -19,6 +19,14 @@ public class FeedBack {
 
     public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
+    }
+
+    public String getQuestionContent() {
+        return questionContent;
+    }
+
+    public void setQuestionContent(String questionContent) {
+        this.questionContent = questionContent == null ? null : questionContent.trim();
     }
 
     public Date getQuestionTime() {
@@ -43,13 +51,5 @@ public class FeedBack {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getQuestionContent() {
-        return questionContent;
-    }
-
-    public void setQuestionContent(String questionContent) {
-        this.questionContent = questionContent == null ? null : questionContent.trim();
     }
 }
