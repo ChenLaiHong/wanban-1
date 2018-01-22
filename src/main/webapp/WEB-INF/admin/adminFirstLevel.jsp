@@ -69,10 +69,26 @@
                 return;
             }
             var row=selectedRows[0];
+            getImageName(row);
             $("#dlg").dialog("open").dialog("setTitle","编辑一级信息");
             $("#fm").form("load",row);
             url="${APP_PATH}/admin/firstLevel/save.do?firstId="+row.firstId;
         }
+
+        //加载图片
+        function getImageName(row) {
+            $.ajax({
+                url:"${APP_PATH}/admin/firstLevel/Image.do?firstId="+row.firstId,
+                type:"POST",
+                success:function (result) {
+                    console.log(result);
+                    var url = '${APP_PATH}/static/levelImages/'+result.extend.imageName;
+                    upload.src = url;
+                }
+            });
+
+        }
+
         function saveFirstLevel(){
             $("#fm").form("submit",{
                 url:url,
@@ -105,7 +121,7 @@
             if(val){
                 return '<img src=static/levelImages/'+val+' style=width:80px;height:50px;>'
             }else{
-                return '<img src='+APP_PATH+'/static/levelImages/moren.png style=width:80px;height:50px;>'
+                return ''
             }
         }
     </script>
@@ -150,9 +166,9 @@
             </tr>
             <tr>
                 <td>图片：</td>
-                <td><input type="file" id="imageFile" name="imageFile"
-                           class="easyui-validatebox" required="true"/>
-                    <img src=static/levelImages/'+${firstImageName}+' style=width:40px;height:40px;>
+                <td><input type="file" id="imageFile" name="imageFile" value="firstImageName"
+                           class="easyui-validatebox"/>
+                    <img id="upload" src="" alt=" " style="height: 50px;width: 50px"/>
                 </td>
             </tr>
         </table>

@@ -56,4 +56,9 @@ public class FirstLevelServiceImpl implements FirstLevelService {
         List<FirstLevel> list = firstLevelMapper.selectByExample(null);
         return  list;
     }
+
+    @Override
+    public String getImageName(int firstId) {
+        return firstLevelMapper.selectByPrimaryKey(firstId).getFirstImageName();
+    }
 }

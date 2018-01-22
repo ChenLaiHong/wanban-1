@@ -40,12 +40,12 @@
             }
             var strIds=[];
             for(var i=0;i<selectedRows.length;i++){
-                strIds.push(selectedRows[i].id);
+                strIds.push(selectedRows[i].secondId);
             }
             var ids=strIds.join(",");
             $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
                 if(r){
-                    $.post("${APP_PATH}/admin/second/delete.do",{ids:ids},function(result){
+                    $.post("${APP_PATH}/admin/secondLevel/delete.do",{ids:ids},function(result){
                         if(result.success){
                             $.messager.alert("系统提示","数据已成功删除！");
                             $("#dg").datagrid("reload");
@@ -133,7 +133,7 @@
             if(val){
                 return '<img src=${APP_PATH}/static/levelImages/'+val+' style=width:80px;height:50px;>'
             }else{
-                return '<img src='+APP_PATH+'/static/levelImages/moren.png style=width:80px;height:50px;>'
+                return ''
             }
         }
 
