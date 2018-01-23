@@ -32,4 +32,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     public void update(FeedBack feedBack) {
         feedBackMapper.updateByPrimaryKeySelective(feedBack);
     }
+
+    @Override
+    public void delete(int i) {
+        feedBackMapper.deleteByPrimaryKey(i);
+    }
 }

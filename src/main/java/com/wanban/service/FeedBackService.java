@@ -14,4 +14,6 @@ public interface FeedBackService {
     Long getTotal(Map<String, Object> map);
 
     void update(FeedBack feedBack);
+
+    void delete(int i);
 }

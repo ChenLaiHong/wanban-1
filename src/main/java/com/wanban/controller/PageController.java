@@ -32,4 +32,9 @@ public class PageController {
     public String checkStatus(){
         return "admin/adminStatus";
     }
+
+    @RequestMapping({"/toFeedBack"})
+    public String feedBack(){
+        return "admin/adminFeedBack";
+    }
 }
