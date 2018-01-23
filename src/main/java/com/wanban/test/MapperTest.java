@@ -36,7 +36,7 @@ public class MapperTest {
     public void testCRUD(){
 //        System.out.print(firstLevelMapper);
 //       firstLevelMapper.insert(new FirstLevel(1,"运动","20180116"));
-
+        System.out.print("二级数目："+secondLevelMapper.getFirstLevelById(1));
     }
 
 }

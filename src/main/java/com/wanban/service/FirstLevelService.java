@@ -24,4 +24,6 @@ public interface FirstLevelService {
     List<FirstLevel> getAllFirstLevel();
 
     String getImageName(int firstId);
+
+    FirstLevel getFirstLevelId(int i);
 }

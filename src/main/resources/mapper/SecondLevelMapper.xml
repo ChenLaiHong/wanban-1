@@ -78,8 +78,8 @@
   </sql>
 
   <!-- 带一级查找 -->
-  <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
-    select count(*) from secondlevel where firstId=#{i}
+  <select id="getFirstLevelById" parameterType="Integer" resultType="Integer">
+    select count(*) from secondlevel where firstId = #{firstId}
   </select>
 
   <!-- list集合 -->

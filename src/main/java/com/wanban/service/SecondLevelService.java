@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by CHLaih on 2018/1/18.
  */
 public interface SecondLevelService {
-    int getFirstLevelId(int i);
+    int getFirstLevelById(int i);
 
     List<SecondLevel> list(Map<String, Object> map);
 

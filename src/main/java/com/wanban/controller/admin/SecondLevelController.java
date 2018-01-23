@@ -65,14 +65,16 @@ public class SecondLevelController {
     public String save(@RequestParam("imageFile") MultipartFile imageFile, SecondLevel secondLevel, HttpServletRequest request, HttpServletResponse response)throws Exception{
         int resultTotal=0; // 操作的记录条数
         if(secondLevel.getSecondId()==null){
-            if (!imageFile.isEmpty()) {
                 String filePath = request.getServletContext().getRealPath("/");
                 String imageName = DateUtil.getCurrentDateStr() + "."
                         + imageFile.getOriginalFilename().split("\\.")[1];
                 imageFile.transferTo(new File(filePath + "static/levelImages/"
                         + imageName));
-                secondLevel.setSecondImageName(imageName );
+                if (!imageFile.isEmpty()) {
+                    File oldFile = new File(filePath+ "static/levelImages/"+secondLevel.getSecondImageName());
+                    oldFile.delete();
             }
+            secondLevel.setSecondImageName(imageName );
             resultTotal=secondLevelService.addSecond(secondLevel);
         }else{
             if (!imageFile.isEmpty()) {
@@ -96,9 +98,12 @@ public class SecondLevelController {
     }
 
     @RequestMapping("/secondLevel/delete")
-    public String delete(@RequestParam(value="ids")String ids,HttpServletResponse response)throws Exception{
+    public String delete(@RequestParam(value="ids")String ids,HttpServletRequest request,HttpServletResponse response)throws Exception{
         String []idsStr=ids.split(",");
         for(int i=0;i<idsStr.length;i++){
+            String filePath = request.getServletContext().getRealPath("/");
+           File oldFile = new File(filePath+ "static/levelImages/"+secondLevelService.getImageName(Integer.parseInt(idsStr[i])));
+            oldFile.delete();
             secondLevelService.deleteSecond(Integer.parseInt(idsStr[i]));
         }
         JSONObject result=new JSONObject();

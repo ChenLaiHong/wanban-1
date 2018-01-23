@@ -15,4 +15,8 @@ public interface UserService {
     Long getTotal(Map<String, Object> map);
 
     List<User> getAllUser();
+
+    User getUser(int userId);
+
+    int updateUser(User user);
 }

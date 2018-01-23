@@ -61,15 +61,18 @@ public class FirstLevelController {
                        HttpServletResponse response) throws Exception {
         System.out.print("进来执行添加操作");
         int resultTotal = 0; // 操作的记录条数
-        if (firstLevel.getFirstId() == null) {
-            if (!imageFile.isEmpty()) {
+        if (firstLevel.getFirstId() != null) {
+
                 String filePath = request.getServletContext().getRealPath("/");
                 String imageName = DateUtil.getCurrentDateStr() + "."
                         + imageFile.getOriginalFilename().split("\\.")[1];
                 imageFile.transferTo(new File(filePath + "static/levelImages/"
                         + imageName));
-                firstLevel.setFirstImageName(imageName );
+            if (!imageFile.isEmpty()) {
+                File oldFile = new File(filePath+ "static/levelImages/"+firstLevel.getFirstImageName());
+                oldFile.delete();
             }
+            firstLevel.setFirstImageName(imageName );
             resultTotal = firstLevelService.add(firstLevel);
         } else {
             if (!imageFile.isEmpty()) {
@@ -93,14 +96,17 @@ public class FirstLevelController {
     }
 
     @RequestMapping("/firstLevel/delete")
-    public String delete(@RequestParam("ids") String ids,
+    public String delete(@RequestParam("ids") String ids,HttpServletRequest request,
                          HttpServletResponse response) throws Exception {
         String idsStr[] = ids.split(",");
         JSONObject result = new JSONObject();
         for (int i = 0; i < idsStr.length; i++) {
-            if (secondLevelService.getFirstLevelId(Integer.parseInt(idsStr[i])) > 0) {
+            if (secondLevelService.getFirstLevelById(Integer.parseInt(idsStr[i])) > 0) {
                 result.put("exist", "此级别下有二级，不能删除！");
             } else {
+                String filePath = request.getServletContext().getRealPath("/");
+                File oldFile = new File(filePath+ "static/levelImages/"+firstLevelService.getImageName(Integer.parseInt(idsStr[i])));
+                oldFile.delete();
                 firstLevelService.delete(Integer.parseInt(idsStr[i]));
             }
         }

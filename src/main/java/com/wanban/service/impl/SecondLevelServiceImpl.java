@@ -19,8 +19,8 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     private SecondLevelMapper secondLevelMapper;
 
     @Override
-    public int getFirstLevelId(int i) {
-        return secondLevelMapper.getFirstLevelId(i);
+    public int getFirstLevelById(int i) {
+        return secondLevelMapper.getFirstLevelById(i);
     }
 
     @Override

@@ -32,7 +32,7 @@ public interface SecondLevelMapper {
 
     int updateByPrimaryKey(SecondLevel record);
 
-    int getFirstLevelId(int i);
+    int getFirstLevelById(int firstId);
 
     List<SecondLevel> list(Map<String, Object> map);
 
