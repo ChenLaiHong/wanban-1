@@ -43,11 +43,11 @@
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
         }
         .u_logo{
-            background: url("${pageContext.request.contextPath}/static/images/userName.png") no-repeat;
+            background: url("${pageContext.request.contextPath}/static/images/username.png") no-repeat;
             padding: 10px 10px;
             position: absolute;
             top: 43px;
-            left: 40px;
+            left: 60px;
 
         }
         .p_logo{
@@ -55,7 +55,7 @@
             padding: 10px 10px;
             position: absolute;
             top: 12px;
-            left: 40px;
+            left: 60px;
         }
         a{
             text-decoration: none;

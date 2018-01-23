@@ -27,4 +27,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     public Long getTotal(Map<String, Object> map) {
         return feedBackMapper.getTotal(map);
     }
+
+    @Override
+    public void update(FeedBack feedBack) {
+        feedBackMapper.updateByPrimaryKeySelective(feedBack);
+    }
 }

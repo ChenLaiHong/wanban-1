@@ -39,16 +39,32 @@ public class FeedBackController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
-        map.put("state", questionStatus); // 评论状态
+        map.put("questionStatus", questionStatus); // 审核状态
         List<FeedBack> feedBackList = feedBackService.list(map);
         Long total = feedBackService.getTotal(map);
         JSONObject result = new JSONObject();
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.registerJsonValueProcessor(Date.class,
-                new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor());
         JSONArray jsonArray = JSONArray.fromObject(feedBackList, jsonConfig);
         result.put("rows", jsonArray);
         result.put("total", total);
+        ResponseUtil.write(response, result);
+        return null;
+    }
+
+    @RequestMapping("/feedback/status")
+    public String review(@RequestParam(value = "ids") String ids,
+                         @RequestParam(value = "questionStatus") Integer questionStatus,
+                         HttpServletResponse response) throws Exception {
+        String[] idsStr = ids.split(",");
+        for (int i = 0; i < idsStr.length; i++) {
+            FeedBack feedBack = new  FeedBack();
+            feedBack.setQuestionStatus(questionStatus);
+            feedBack.setQuestionId(Integer.parseInt(idsStr[i]));
+            feedBackService.update(feedBack);
+        }
+        JSONObject result = new JSONObject();
+        result.put("success", true);
         ResponseUtil.write(response, result);
         return null;
     }

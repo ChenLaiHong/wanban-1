@@ -80,7 +80,7 @@
         <div title="xxx" data-options="iconCls:'icon-bklb'" style="padding:10px">
             <a href="javascript:openTab('xxx','xxx','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
         </div>
-        <div title="xxx"  data-options="iconCls:'icon-plgl'" style="padding:10px">
+        <div title="反馈管理"  data-options="iconCls:'icon-plgl'" style="padding:10px">
             <a href="javascript:openTab('反馈审核','toCheckStatus.do','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">反馈审核</a>
             <a href="javascript:openTab('反馈审核管理','xxx','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">反馈信息管理</a>
         </div>

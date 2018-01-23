@@ -29,6 +29,25 @@ public class User {
 
     private Date createTime;
 
+    public User(){
+        super();
+    }
+    public User(Integer userId, String userName, String password, String sex, String phone, String email, String sign, String imageName, Integer grade, String city, String hobby, Date birth, Date createTime) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.sex = sex;
+        this.phone = phone;
+        this.email = email;
+        this.sign = sign;
+        this.imageName = imageName;
+        this.grade = grade;
+        this.city = city;
+        this.hobby = hobby;
+        this.birth = birth;
+        this.createTime = createTime;
+    }
+
     public Integer getUserId() {
         return userId;
     }

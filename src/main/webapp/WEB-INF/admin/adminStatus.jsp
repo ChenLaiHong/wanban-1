@@ -20,10 +20,13 @@
 
     <script type="text/javascript">
 
+        function formatUser(val,row){
+            return val.userName;
+        }
         function statusReview(questionStatus){
             var selectedRows=$("#dg").datagrid("getSelections");
             if(selectedRows.length==0){
-                $.messager.alert("系统提示","请选择要删除的数据！");
+                $.messager.alert("系统提示","请选择要审核的数据！");
                 return;
             }
             var strIds=[];
@@ -55,8 +58,8 @@
     <thead>
     <tr>
         <th field="cb" checkbox="true" align="center"></th>
-        <th field="questionId" width="20" align="center">编号</th>
-        <th field="user" width="100" align="center">用户名</th>
+        <th field="questionId" width="20" align="center" hidden>编号</th>
+        <th field="user" width="30" align="center" formatter="formatUser">用户名</th>
         <th field="questionContent" width="200" align="center">反馈内容</th>
         <th field="questionTime" width="50" align="center">反馈日期</th>
     </tr>

@@ -1,5 +1,6 @@
 package com.wanban.pojo;
 
+
 import java.util.Date;
 
 public class FeedBack {
@@ -12,6 +13,16 @@ public class FeedBack {
     private Integer questionStatus;
 
     private Integer userId;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getQuestionId() {
         return questionId;
@@ -28,6 +39,7 @@ public class FeedBack {
     public void setQuestionContent(String questionContent) {
         this.questionContent = questionContent == null ? null : questionContent.trim();
     }
+
 
     public Date getQuestionTime() {
         return questionTime;

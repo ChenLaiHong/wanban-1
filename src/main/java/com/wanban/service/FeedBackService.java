@@ -12,4 +12,6 @@ public interface FeedBackService {
     List<FeedBack> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
+
+    void update(FeedBack feedBack);
 }

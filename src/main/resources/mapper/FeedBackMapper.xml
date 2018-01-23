@@ -94,7 +94,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from feedback
     where question_id = #{questionId,jdbcType=INTEGER}
@@ -105,10 +105,10 @@
     select * from feedback
     <where>
       <if test="questionStatus!=null">
-        and questionStatus=#{question_status}
+        and question_status=#{questionStatus}
       </if>
       <if test="userId!=null and userId!='' ">
-        and userId = #{user_id}
+        and user_id = #{userId}
       </if>
     </where>
     order by question_time DESC
