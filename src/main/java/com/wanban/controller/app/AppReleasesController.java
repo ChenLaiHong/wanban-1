@@ -29,7 +29,8 @@ public class AppReleasesController {
     @RequestMapping(value = "/releaseMassage",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String releaseMassage(@RequestParam(value = "firstId", required = false) int firstId,
-                                 @RequestParam(value = "secondId",required = false) int secondId, Releases releases, HttpServletResponse response){
+                                 @RequestParam(value = "secondId",required = false) int secondId,
+                                @RequestParam(value="userId",required = true) int userId, Releases releases, HttpServletResponse response){
                        if(firstId !=0){
                            String name = firstLevelService.getFirstLevelId(firstId).getFirstName();
                            releases.setType(name);

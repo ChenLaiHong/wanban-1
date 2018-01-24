@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanban.dao.SecondLevelMapper">
+  <resultMap id="BaseResultMap" type="com.wanban.pojo.SecondLevel">
+    <id column="second_id" jdbcType="INTEGER" property="secondId" />
+    <result column="second_name" jdbcType="VARCHAR" property="secondName" />
+    <result column="second_image_name" jdbcType="VARCHAR" property="secondImageName" />
+    <result column="firstId" jdbcType="INTEGER" property="firstId" />
+  </resultMap>
+
+  <resultMap id="SecondLevelResult" type="com.wanban.pojo.SecondLevel">
+    <id column="second_id" jdbcType="INTEGER" property="secondId" />
+    <result column="second_name" jdbcType="VARCHAR" property="secondName" />
+    <result column="second_image_name" jdbcType="VARCHAR" property="secondImageName" />
+    <result column="firstId" jdbcType="INTEGER" property="firstId" />
+    <association property="firstLevel" column="firstId" select="com.wanban.dao.FirstLevelMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    second_id, second_name, second_image_name, firstId
+  </sql>
+
+  <!-- 带一级查找 -->
+  <select id="getFirstLevelById" parameterType="Integer" resultType="Integer">
+    select count(*) from secondlevel where firstId = #{firstId}
+  </select>
+
+  <!-- list集合 -->
+  <select id="list" parameterType="Map" resultMap="SecondLevelResult">
+    select * from secondlevel
+    <where>
+      <if test="secondName!=null and secondName!='' ">
+        and second_name like #{secondName}
+      </if>
+    <if test="firstId!=null and firstId!='' ">
+       and firstId = #{firstId}
+    </if>
+    </where>
+    order by firstId
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+  <!-- getTotal -->
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from secondlevel
+  </select>
+
+  <select id="selectByExample" parameterType="com.wanban.pojo.SecondLevelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from secondlevel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from secondlevel
+    where second_id = #{secondId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from secondlevel
+    where second_id = #{secondId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wanban.pojo.SecondLevelExample">
+    delete from secondlevel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wanban.pojo.SecondLevel">
+    insert into secondlevel (second_id, second_name, second_image_name, 
+      firstId)
+    values (#{secondId,jdbcType=INTEGER}, #{secondName,jdbcType=VARCHAR}, #{secondImageName,jdbcType=VARCHAR}, 
+      #{firstId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanban.pojo.SecondLevel">
+    insert into secondlevel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="secondId != null">
+        second_id,
+      </if>
+      <if test="secondName != null">
+        second_name,
+      </if>
+      <if test="secondImageName != null">
+        second_image_name,
+      </if>
+      <if test="firstId != null">
+        firstId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="secondId != null">
+        #{secondId,jdbcType=INTEGER},
+      </if>
+      <if test="secondName != null">
+        #{secondName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondImageName != null">
+        #{secondImageName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstId != null">
+        #{firstId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wanban.pojo.SecondLevelExample" resultType="java.lang.Long">
+    select count(*) from secondlevel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update secondlevel
+    <set>
+      <if test="record.secondId != null">
+        second_id = #{record.secondId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondName != null">
+        second_name = #{record.secondName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondImageName != null">
+        second_image_name = #{record.secondImageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstId != null">
+        firstId = #{record.firstId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update secondlevel
+    set second_id = #{record.secondId,jdbcType=INTEGER},
+      second_name = #{record.secondName,jdbcType=VARCHAR},
+      second_image_name = #{record.secondImageName,jdbcType=VARCHAR},
+      firstId = #{record.firstId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanban.pojo.SecondLevel">
+    update secondlevel
+    <set>
+      <if test="secondName != null">
+        second_name = #{secondName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondImageName != null">
+        second_image_name = #{secondImageName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstId != null">
+        firstId = #{firstId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where second_id = #{secondId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanban.pojo.SecondLevel">
+    update secondlevel
+    set second_name = #{secondName,jdbcType=VARCHAR},
+      second_image_name = #{secondImageName,jdbcType=VARCHAR},
+      firstId = #{firstId,jdbcType=INTEGER}
+    where second_id = #{secondId,jdbcType=INTEGER}
+  </update>
+</mapper>
