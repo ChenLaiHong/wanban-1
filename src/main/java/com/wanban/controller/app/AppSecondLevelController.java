@@ -6,9 +6,13 @@ import com.wanban.service.SecondLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
+import static com.wanban.utils.JsonUtils.objectToJson;
 
 /**
  * Created by CHLaih on 2018/1/21.
@@ -18,10 +22,10 @@ public class AppSecondLevelController {
     @Autowired
     private SecondLevelService secondLevelService;
 
-    @RequestMapping("/getAllSecondlevel")
+    @RequestMapping(value ="/getAllSecondlevel", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Massage getAllSecond(){
-        List<SecondLevel> list = secondLevelService.getAllSecond();
-        return Massage.success().add("secondLevel",list);
+    public String getAllSecond(@RequestParam(value = "firstId", required = true) int firstId){
+        List<SecondLevel> list = secondLevelService.getAllSecond(firstId);
+        return list != null ? objectToJson(list) : "0";
     }
 }

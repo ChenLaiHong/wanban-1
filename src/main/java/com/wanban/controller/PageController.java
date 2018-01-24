@@ -37,4 +37,9 @@ public class PageController {
     public String feedBack(){
         return "admin/adminFeedBack";
     }
+
+    @RequestMapping({"/toReleases"})
+    public String releases(){
+        return "admin/adminRelease";
+    }
 }

@@ -3,6 +3,7 @@ package com.wanban.service.impl;
 import com.wanban.dao.SecondLevelMapper;
 import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.SecondLevel;
+import com.wanban.pojo.SecondLevelExample;
 import com.wanban.service.SecondLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +55,16 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     }
 
     @Override
-    public List<SecondLevel> getAllSecond() {
-        return secondLevelMapper.selectByExample(null);
+    public List<SecondLevel> getAllSecond(int firstId) {
+        SecondLevelExample secondLevelExample = new SecondLevelExample();
+        SecondLevelExample.Criteria criteria = secondLevelExample.createCriteria();
+        criteria.andFirstIdEqualTo(firstId);
+        return secondLevelMapper.selectByExample(secondLevelExample);
+    }
+
+    @Override
+    public SecondLevel getSecondById(int secondId) {
+        return secondLevelMapper.selectByPrimaryKey(secondId);
     }
 
 

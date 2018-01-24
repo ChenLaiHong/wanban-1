@@ -23,5 +23,7 @@ public interface SecondLevelService {
 
     String getImageName(Integer secondId);
 
-    List<SecondLevel> getAllSecond();
+    List<SecondLevel> getAllSecond(int firstId);
+
+    SecondLevel getSecondById(int secondId);
 }

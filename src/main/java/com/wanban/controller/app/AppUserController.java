@@ -31,6 +31,7 @@ public class AppUserController
     @ResponseBody
     public String getAllUser(){
         List<User> list = userService.getAllUser();
+
         return list !=null?objectToJson(list): "0";
     }
 
@@ -61,6 +62,8 @@ public class AppUserController
         user.setImageName(imageName );
         return userService.updateUser(user)>0 ? 1:0;
     }
+
+
 
 
 

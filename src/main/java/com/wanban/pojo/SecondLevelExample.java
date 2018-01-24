@@ -305,62 +305,62 @@ public class SecondLevelExample {
         }
 
         public Criteria andFirstIdIsNull() {
-            addCriterion("first_id is null");
+            addCriterion("firstId is null");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdIsNotNull() {
-            addCriterion("first_id is not null");
+            addCriterion("firstId is not null");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdEqualTo(Integer value) {
-            addCriterion("first_id =", value, "firstId");
+            addCriterion("firstId =", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdNotEqualTo(Integer value) {
-            addCriterion("first_id <>", value, "firstId");
+            addCriterion("firstId <>", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdGreaterThan(Integer value) {
-            addCriterion("first_id >", value, "firstId");
+            addCriterion("firstId >", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("first_id >=", value, "firstId");
+            addCriterion("firstId >=", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdLessThan(Integer value) {
-            addCriterion("first_id <", value, "firstId");
+            addCriterion("firstId <", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdLessThanOrEqualTo(Integer value) {
-            addCriterion("first_id <=", value, "firstId");
+            addCriterion("firstId <=", value, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdIn(List<Integer> values) {
-            addCriterion("first_id in", values, "firstId");
+            addCriterion("firstId in", values, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdNotIn(List<Integer> values) {
-            addCriterion("first_id not in", values, "firstId");
+            addCriterion("firstId not in", values, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdBetween(Integer value1, Integer value2) {
-            addCriterion("first_id between", value1, value2, "firstId");
+            addCriterion("firstId between", value1, value2, "firstId");
             return (Criteria) this;
         }
 
         public Criteria andFirstIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("first_id not between", value1, value2, "firstId");
+            addCriterion("firstId not between", value1, value2, "firstId");
             return (Criteria) this;
         }
     }
