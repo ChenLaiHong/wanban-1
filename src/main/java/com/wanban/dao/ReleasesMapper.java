@@ -3,6 +3,8 @@ package com.wanban.dao;
 import com.wanban.pojo.Releases;
 import com.wanban.pojo.ReleasesExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -29,4 +31,9 @@ public interface ReleasesMapper {
     int updateByPrimaryKeySelective(Releases record);
 
     int updateByPrimaryKey(Releases record);
+
+    List<Releases> list(Map<String, Object> map);
+
+    Long getTotal(Map<String, Object> map);
+
 }

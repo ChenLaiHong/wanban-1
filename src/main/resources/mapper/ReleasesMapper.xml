@@ -2,12 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wanban.dao.ReleasesMapper">
   <resultMap id="BaseResultMap" type="com.wanban.pojo.Releases">
+  <id column="release_id" jdbcType="INTEGER" property="releaseId" />
+  <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
+  <result column="sport_time" jdbcType="TIMESTAMP" property="sportTime" />
+  <result column="sport_place" jdbcType="VARCHAR" property="sportPlace" />
+  <result column="types" jdbcType="VARCHAR" property="types" />
+  <result column="status" jdbcType="INTEGER" property="status" />
+  <result column="user_id" jdbcType="INTEGER" property="userId" />
+</resultMap>
+
+  <resultMap id="ReleaseResultMap" type="com.wanban.pojo.Releases">
     <id column="release_id" jdbcType="INTEGER" property="releaseId" />
     <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
     <result column="sport_time" jdbcType="TIMESTAMP" property="sportTime" />
     <result column="sport_place" jdbcType="VARCHAR" property="sportPlace" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="types" jdbcType="VARCHAR" property="types" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <association property="user" column="user_id" select="com.wanban.dao.UserMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +80,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    release_id, release_time, sport_time, sport_place, type, user_id
+    release_id, release_time, sport_time, sport_place, types, status, user_id
   </sql>
   <select id="selectByExample" parameterType="com.wanban.pojo.ReleasesExample" resultMap="BaseResultMap">
     select
@@ -90,6 +102,32 @@
     from releases
     where release_id = #{releaseId,jdbcType=INTEGER}
   </select>
+
+  <!-- list-->
+  <select id="list" parameterType="Map" resultMap="ReleaseResultMap">
+    select * from releases
+    <where>
+      <if test="status!=null and status != ''">
+        and status=#{status}
+      </if>
+      <if test="types!=null and types!='' ">
+        and types like #{types}
+      </if>
+      <if test="userId!=null and userId!='' ">
+        and user_id = #{userId}
+      </if>
+    </where>
+    order by releaseTime DESC
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
+  <!-- getTotal -->
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from releases
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from releases
     where release_id = #{releaseId,jdbcType=INTEGER}
@@ -102,11 +140,11 @@
   </delete>
   <insert id="insert" parameterType="com.wanban.pojo.Releases">
     insert into releases (release_id, release_time, sport_time, 
-      sport_place, type, user_id
-      )
+      sport_place, types, status, 
+      user_id)
     values (#{releaseId,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}, #{sportTime,jdbcType=TIMESTAMP}, 
-      #{sportPlace,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
-      )
+      #{sportPlace,jdbcType=VARCHAR}, #{types,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.Releases">
     insert into releases
@@ -123,8 +161,11 @@
       <if test="sportPlace != null">
         sport_place,
       </if>
-      <if test="type != null">
-        type,
+      <if test="types != null">
+        types,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="userId != null">
         user_id,
@@ -143,8 +184,11 @@
       <if test="sportPlace != null">
         #{sportPlace,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
+      <if test="types != null">
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -172,8 +216,11 @@
       <if test="record.sportPlace != null">
         sport_place = #{record.sportPlace,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=VARCHAR},
+      <if test="record.types != null">
+        types = #{record.types,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -189,7 +236,8 @@
       release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
       sport_time = #{record.sportTime,jdbcType=TIMESTAMP},
       sport_place = #{record.sportPlace,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
+      types = #{record.types,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -207,8 +255,11 @@
       <if test="sportPlace != null">
         sport_place = #{sportPlace,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
+      <if test="types != null">
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
@@ -221,7 +272,8 @@
     set release_time = #{releaseTime,jdbcType=TIMESTAMP},
       sport_time = #{sportTime,jdbcType=TIMESTAMP},
       sport_place = #{sportPlace,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
+      types = #{types,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER}
     where release_id = #{releaseId,jdbcType=INTEGER}
   </update>

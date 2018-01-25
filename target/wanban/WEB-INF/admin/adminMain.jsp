@@ -74,8 +74,10 @@
             <a href="javascript:openTab('一级信息管理','toFirstLevel.do','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">一级信息管理</a>
             <a href="javascript:openTab('二级信息管理','toSecondLevel.do','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">二级信息管理</a>
         </div>
-        <div title="xxx"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
-            <a href="javascript:openTab('xxx','xxx','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">博客信息管理</a>
+        <div title="发布管理"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
+            <a href="javascript:openTab('发布信息管理','toReleases.do','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">发布信息管理</a>
+            <a href="javascript:openTab('已下架信息','toReleasesOut.do','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">已下架信息</a>
+
         </div>
         <div title="xxx" data-options="iconCls:'icon-bklb'" style="padding:10px">
             <a href="javascript:openTab('xxx','xxx','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
@@ -85,7 +87,7 @@
             <a href="javascript:openTab('反馈信息管理','toFeedBack.do','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">反馈信息管理</a>
         </div>
         <div title="xxx"  data-options="iconCls:'icon-system'" style="padding:10px">
-            <a href="javascript:openTab('xxx','xxx','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">友情链接管理</a>
+            <a href="javascript:openTab('xxx','xxx','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">xxx管理</a>
             <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
         </div>
     </div>

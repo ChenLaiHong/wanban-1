@@ -26,11 +26,11 @@
             return val.firstName;
         }
 
-        function searchSecondLevel(){
-            $("#dg").datagrid('load',{
-                "title":$("#s_title").val()
-            });
-        }
+//        function searchSecondLevel(){
+//            $("#dg").datagrid('load',{
+//                "title":$("#s_title").val()
+//            });
+//        }
 
         function deleteSecondLevel(){
             var selectedRows=$("#dg").datagrid("getSelections");

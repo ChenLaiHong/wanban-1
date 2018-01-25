@@ -355,73 +355,133 @@ public class ReleasesExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andTypesIsNull() {
+            addCriterion("types is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andTypesIsNotNull() {
+            addCriterion("types is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(String value) {
-            addCriterion("type =", value, "type");
+        public Criteria andTypesEqualTo(String value) {
+            addCriterion("types =", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(String value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andTypesNotEqualTo(String value) {
+            addCriterion("types <>", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(String value) {
-            addCriterion("type >", value, "type");
+        public Criteria andTypesGreaterThan(String value) {
+            addCriterion("types >", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andTypesGreaterThanOrEqualTo(String value) {
+            addCriterion("types >=", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(String value) {
-            addCriterion("type <", value, "type");
+        public Criteria andTypesLessThan(String value) {
+            addCriterion("types <", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(String value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andTypesLessThanOrEqualTo(String value) {
+            addCriterion("types <=", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLike(String value) {
-            addCriterion("type like", value, "type");
+        public Criteria andTypesLike(String value) {
+            addCriterion("types like", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotLike(String value) {
-            addCriterion("type not like", value, "type");
+        public Criteria andTypesNotLike(String value) {
+            addCriterion("types not like", value, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<String> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andTypesIn(List<String> values) {
+            addCriterion("types in", values, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<String> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andTypesNotIn(List<String> values) {
+            addCriterion("types not in", values, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(String value1, String value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andTypesBetween(String value1, String value2) {
+            addCriterion("types between", value1, value2, "types");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(String value1, String value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andTypesNotBetween(String value1, String value2) {
+            addCriterion("types not between", value1, value2, "types");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
 
@@ -538,7 +598,7 @@ public class ReleasesExample {
             return listValue;
         }
 
-        public String getTypeHandler() {
+        public String getTypesHandler() {
             return typeHandler;
         }
 

@@ -11,9 +11,21 @@ public class Releases {
 
     private String sportPlace;
 
-    private String type;
+    private String types;
+
+    private Integer status;
 
     private Integer userId;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getReleaseId() {
         return releaseId;
@@ -47,12 +59,20 @@ public class Releases {
         this.sportPlace = sportPlace == null ? null : sportPlace.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getTypes() {
+        return types;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setTypes(String types) {
+        this.types = types == null ? null : types.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getUserId() {

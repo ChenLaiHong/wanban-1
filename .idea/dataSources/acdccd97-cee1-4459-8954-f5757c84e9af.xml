@@ -85,98 +85,103 @@
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="31" parent="14" name="type">
+    <column id="31" parent="14" name="user_id">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="32" parent="14" name="status">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="33" parent="14" name="types">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="32" parent="14" name="user_id">
-      <Position>6</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <key id="33" parent="14" name="PRIMARY">
+    <key id="34" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>release_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="34" parent="15" name="second_id">
+    <column id="35" parent="15" name="second_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="35" parent="15" name="second_name">
+    <column id="36" parent="15" name="second_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="36" parent="15" name="second_image_name">
+    <column id="37" parent="15" name="second_image_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="37" parent="15" name="firstId">
+    <column id="38" parent="15" name="firstId">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="38" parent="15" name="PRIMARY">
+    <key id="39" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>second_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="39" parent="16" name="password">
+    <column id="40" parent="16" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="40" parent="16" name="sex">
+    <column id="41" parent="16" name="sex">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="41" parent="16" name="phone">
+    <column id="42" parent="16" name="phone">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="42" parent="16" name="email">
+    <column id="43" parent="16" name="email">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="43" parent="16" name="sign">
+    <column id="44" parent="16" name="sign">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="44" parent="16" name="grade">
+    <column id="45" parent="16" name="grade">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="45" parent="16" name="city">
+    <column id="46" parent="16" name="city">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="46" parent="16" name="birth">
+    <column id="47" parent="16" name="birth">
       <Position>12</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="47" parent="16" name="hobby">
+    <column id="48" parent="16" name="hobby">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="48" parent="16" name="user_id">
+    <column id="49" parent="16" name="user_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="49" parent="16" name="user_name">
+    <column id="50" parent="16" name="user_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="50" parent="16" name="image_name">
+    <column id="51" parent="16" name="image_name">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="51" parent="16" name="create_time">
+    <column id="52" parent="16" name="create_time">
       <Position>13</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <key id="52" parent="16" name="PRIMARY">
+    <key id="53" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>

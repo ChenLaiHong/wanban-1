@@ -42,4 +42,9 @@ public class PageController {
     public String releases(){
         return "admin/adminRelease";
     }
+
+    @RequestMapping({"/toReleasesOut"})
+    public String releaseOut(){
+        return "admin/adminReleaseOut";
+    }
 }

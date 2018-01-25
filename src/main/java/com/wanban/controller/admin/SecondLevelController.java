@@ -1,6 +1,5 @@
 package com.wanban.controller.admin;
 
-import com.wanban.pojo.FirstLevel;
 import com.wanban.pojo.Massage;
 import com.wanban.pojo.PageBean;
 import com.wanban.pojo.SecondLevel;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -26,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.wanban.utils.ImageUp.JudeImage;
 
 /**
  * Created by CHLaih on 2018/1/18.
@@ -38,12 +35,10 @@ public class SecondLevelController {
     @Autowired
     private SecondLevelService secondLevelService;
 
-    @Autowired
-    private FirstLevelService firstLevelService;
     @RequestMapping("/secondLevel/list")
     public String list(@RequestParam(value = "page", required = false) String page,
                        @RequestParam(value = "rows", required = false) String rows,SecondLevel a_secondLevel,
-                       HttpServletResponse response,HttpServletRequest request) throws Exception {
+                       HttpServletResponse response) throws Exception {
         PageBean pageBean = new PageBean(Integer.parseInt(page),
                 Integer.parseInt(rows));
 
