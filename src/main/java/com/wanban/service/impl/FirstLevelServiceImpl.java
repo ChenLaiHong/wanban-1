@@ -18,7 +18,6 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     @Autowired
     private FirstLevelMapper firstLevelMapper;
 
-    private FirstLevelExample firstLevelExample;
 
     @Override
     public List<FirstLevel> list(Map<String, Object> map) {
@@ -44,11 +43,6 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     @Override
     public int delete(int i) {
       return  firstLevelMapper.deleteByPrimaryKey(i);
-    }
-
-    @Override
-    public List<FirstLevel> countList() {
-        return firstLevelMapper.selectByExample(firstLevelExample);
     }
 
     @Override

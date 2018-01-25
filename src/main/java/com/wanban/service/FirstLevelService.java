@@ -19,8 +19,6 @@ public interface FirstLevelService {
 
     int delete(int i);
 
-    List<FirstLevel> countList();
-
     List<FirstLevel> getAllFirstLevel();
 
     String getImageName(int firstId);

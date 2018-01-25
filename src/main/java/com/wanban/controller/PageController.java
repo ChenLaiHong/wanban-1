@@ -1,6 +1,5 @@
 package com.wanban.controller;
 
-import com.wanban.service.impl.InitComponent;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

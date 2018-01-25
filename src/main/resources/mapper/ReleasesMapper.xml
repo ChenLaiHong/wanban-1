@@ -117,7 +117,7 @@
         and user_id = #{userId}
       </if>
     </where>
-    order by releaseTime DESC
+    order by release_time DESC
     <if test="start!=null and size!=null">
       limit #{start},#{size}
     </if>
@@ -142,8 +142,8 @@
     insert into releases (release_id, release_time, sport_time, 
       sport_place, types, status, 
       user_id)
-    values (#{releaseId,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}, #{sportTime,jdbcType=TIMESTAMP}, 
-      #{sportPlace,jdbcType=VARCHAR}, #{types,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+    values (#{releaseId,jdbcType=INTEGER}, now(), #{sportTime,jdbcType=TIMESTAMP},
+      #{sportPlace,jdbcType=VARCHAR}, #{types,jdbcType=VARCHAR}, 0,
       #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.Releases">
@@ -176,7 +176,7 @@
         #{releaseId,jdbcType=INTEGER},
       </if>
       <if test="releaseTime != null">
-        #{releaseTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="sportTime != null">
         #{sportTime,jdbcType=TIMESTAMP},

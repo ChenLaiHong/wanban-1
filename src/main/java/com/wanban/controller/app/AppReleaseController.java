@@ -31,18 +31,18 @@ public class AppReleaseController {
 
     @RequestMapping(value = "/addRelease", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String addRelease(@RequestParam(value = "firstId",required = false) int firstId,
-                             @RequestParam(value = "secondId",required = false) int secondId,
+    public String addRelease(@RequestParam(value = "firstId",required = false) Integer firstId,
+                             @RequestParam(value = "secondId",required = false) Integer secondId,
                              @RequestParam(value = "userId",required = true) int userId, Releases releases
                              ){
-        if(firstId != 0){
+        if(firstId != null){
           String name = firstLevelService.getFirstLevelId(firstId).getFirstName();
           releases.setTypes(name);
-        }else{
+        }if(secondId != null){
             String name = secondLevelService.getSecondById(secondId).getSecondName();
             releases.setTypes(name);
         }
-        int result = releasesService.add(releases);
+        releasesService.add(releases);
         User user = userService.getUser(userId);
         return user != null ? objectToJson(user) : "0";
     }

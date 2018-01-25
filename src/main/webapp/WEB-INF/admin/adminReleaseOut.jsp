@@ -24,7 +24,7 @@
         }
         function searchRelease(){
             $("#dg").datagrid('load',{
-                "type":$("#type").val()
+                "types":$("#types").val()
             });
         }
 
@@ -47,7 +47,7 @@
         <th field="user" width="20" align="center" formatter="formatUser">发布用户</th>
         <th field="sportPlace" width="30" align="center">运动地点</th>
         <th field="sportTime" width="50" align="center">运动时间</th>
-        <th field="type" width="50" align="center">运动类型</th>
+        <th field="types" width="50" align="center">运动类型</th>
         <th field="releaseTime" width="50" align="center">发布时间</th>
         <th field="questionStatus" width="50" align="center" formatter="formatState">状态</th>
     </tr>
@@ -55,7 +55,7 @@
 </table>
 <div id="tb">
     <div>
-        &nbsp;标题：&nbsp;<input type="text" id="type" size="20" onkeydown="if(event.keyCode==13) searchRelease()"/>
+        &nbsp;标题：&nbsp;<input type="text" id="types" size="20" onkeydown="if(event.keyCode==13) searchRelease()"/>
         <a href="javascript:searchRelease()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>

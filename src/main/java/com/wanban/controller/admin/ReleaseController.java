@@ -33,7 +33,7 @@ public class ReleaseController {
     @RequestMapping("/release/list")
     public String releaseList(@RequestParam(value = "page", required = false) String page,
                               @RequestParam(value = "rows", required = false) String rows,
-                              @RequestParam(value = "status",required = false) int status,
+                              @RequestParam(value = "status",required = false) String status,
                               Releases a_releases, HttpServletResponse response)throws Exception{
         PageBean pageBean = new PageBean(Integer.parseInt(page),
                 Integer.parseInt(rows));

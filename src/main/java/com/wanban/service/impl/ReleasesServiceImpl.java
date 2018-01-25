@@ -30,7 +30,7 @@ public class ReleasesServiceImpl implements ReleasesService {
 
     @Override
     public int add(Releases releases) {
-        return releasesMapper.insertSelective(releases);
+        return releasesMapper.insert(releases);
     }
 
     @Override

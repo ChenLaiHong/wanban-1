@@ -62,7 +62,7 @@
         <th field="user" width="30" align="center" formatter="formatUser">发布用户</th>
         <th field="sportPlace" width="50" align="center">运动地点</th>
         <th field="sportTime" width="60" align="center">运动时间</th>
-        <th field="type" width="50" align="center">运动类型</th>
+        <th field="types" width="50" align="center">运动类型</th>
         <th field="releaseTime" width="60" align="center">发布时间</th>
 
     </tr>
@@ -70,7 +70,7 @@
 </table>
 <div id="tb">
     <div>
-        <a href="javascript:statusReview(1)" class="easyui-linkbutton" iconCls="icon-ok" plain="true">下架</a>
+        <a href="javascript:statusReview(1)" class="easyui-linkbutton" iconCls="icon-no" plain="true">下架</a>
     </div>
 </div>
 
