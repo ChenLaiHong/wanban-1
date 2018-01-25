@@ -135,8 +135,8 @@
   <insert id="insert" parameterType="com.wanban.pojo.FeedBack">
     insert into feedback (question_id, question_content, question_time, 
       question_status, user_id)
-    values (#{questionId,jdbcType=INTEGER}, #{questionContent,jdbcType=VARCHAR}, #{questionTime,jdbcType=TIMESTAMP}, 
-      #{questionStatus,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+    values (#{questionId,jdbcType=INTEGER}, #{questionContent,jdbcType=VARCHAR}, now(),
+      0, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.FeedBack">
     insert into feedback

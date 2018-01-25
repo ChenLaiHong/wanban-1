@@ -37,4 +37,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     public void delete(int i) {
         feedBackMapper.deleteByPrimaryKey(i);
     }
+
+    @Override
+    public int add(FeedBack feedBack) {
+        return feedBackMapper.insert(feedBack);
+    }
 }
