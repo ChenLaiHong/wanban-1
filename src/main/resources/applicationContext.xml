@@ -18,7 +18,6 @@
     </context:component-scan>
 
     <!-- 数据源，事务控制 -->
-
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
