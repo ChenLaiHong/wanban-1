@@ -11,7 +11,6 @@
 <head>
     <title>后台主页</title>
 
-
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -37,9 +36,54 @@
         function logout(){
             $.messager.confirm("系统提示","您确定要退出系统吗？",function(r){
                 if(r){
-                    window.location.href='${pageContext.request.contextPath}/adminLoginout.do';
+                    window.location.href='${pageContext.request.contextPath}/admin/loginOut.do';
                 }
             });
+        }
+
+        function openPasswordModifyDialog(){
+            $("#dlg").dialog("open").dialog("setTitle","修改密码");
+            url="${pageContext.request.contextPath}/admin/modifyPassword.do?id=${adminUser.adminId}";
+        }
+
+        function modifyPassword(){
+            $("#fm").form("submit",{
+                url:url,
+                onSubmit:function(){
+                    var newPassword=$("#newPassword").val();
+                    var newPassword2=$("#newPassword2").val();
+                    if(!$(this).form("validate")){
+                        return false;
+                    }
+                    if(newPassword!=newPassword2){
+                        $.messager.alert("系统提示","确认密码输入错误！");
+                        return false;
+                    }
+                    return true;
+                },
+                success:function(result){
+                    var result=eval('('+result+')');
+                    if(result.success){
+                        $.messager.alert("系统提示","密码修改成功，下一次登录生效！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                    }else{
+                        $.messager.alert("系统提示","密码修改失败！");
+                        return;
+                    }
+                }
+            });
+        }
+
+        function closePasswordModifyDialog(){
+            resetValue();
+            $("#dlg").dialog("close");
+        }
+
+        function resetValue(){
+            $("#oldPassword").val("");
+            $("#newPassword").val("");
+            $("#newPassword2").val("");
         }
 
 
@@ -55,7 +99,7 @@
                 </div>
             </td>
             <td valign="bottom" align="right" width="50%">
-                <font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${admin }</font>
+                <font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${adminUser.adminName}</font>
             </td>
         </tr>
     </table>
@@ -86,8 +130,8 @@
             <a href="javascript:openTab('反馈审核','toCheckStatus.do','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">反馈审核</a>
             <a href="javascript:openTab('反馈信息管理','toFeedBack.do','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">反馈信息管理</a>
         </div>
-        <div title="xxx"  data-options="iconCls:'icon-system'" style="padding:10px">
-            <a href="javascript:openTab('xxx','xxx','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">xxx管理</a>
+        <div title="管理员设置"  data-options="iconCls:'icon-system'" style="padding:10px">
+            <a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
             <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
         </div>
     </div>

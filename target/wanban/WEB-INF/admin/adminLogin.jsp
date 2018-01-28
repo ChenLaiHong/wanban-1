@@ -98,6 +98,7 @@
             <P style="margin: 0px 35px 20px 45px;">
                 <SPAN style="float: left;">后台管理系统</SPAN>
                 <span><font color="red" id="error">${result.msg}</font></span>
+                <span><font color="red">${errorInfo}</font></span>
                 <SPAN style="float: right;">
 	              <input type="submit" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: #FFB7DD; font-weight: bold;" value="登录"/>
 	         </SPAN>
