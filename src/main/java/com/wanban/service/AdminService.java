@@ -7,4 +7,6 @@ import com.wanban.pojo.Admin;
  */
 public interface AdminService {
     Admin login(Admin admin);
+    Admin find(int adminId);
+    int update (Admin admin);
 }

@@ -47,8 +47,7 @@ public class AppUserController
     //user : 传入所需要修改的值,不需要修改的值不用传
     //成功修改个人资料返回1，失败返回0
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public int updateUser(@RequestParam("imageFile") MultipartFile imageFile,User user, HttpServletRequest request,
-                          HttpServletResponse response)throws Exception{
+    public int updateUser(@RequestParam("imageFile") MultipartFile imageFile,User user, HttpServletRequest request)throws Exception{
 
             String filePath = request.getServletContext().getRealPath("/");
             String imageName = DateUtil.getCurrentDateStr() + "."

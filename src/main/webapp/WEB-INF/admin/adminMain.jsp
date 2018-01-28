@@ -43,7 +43,7 @@
 
         function openPasswordModifyDialog(){
             $("#dlg").dialog("open").dialog("setTitle","修改密码");
-            url="${pageContext.request.contextPath}/admin/modifyPassword.do?id=${adminUser.adminId}";
+            url="${pageContext.request.contextPath}/admin/modifyPassword.do?adminId=${adminUser.adminId}";
         }
 
         function modifyPassword(){
@@ -81,7 +81,6 @@
         }
 
         function resetValue(){
-            $("#oldPassword").val("");
             $("#newPassword").val("");
             $("#newPassword2").val("");
         }
@@ -138,6 +137,31 @@
 </div>
 <div region="south" style="height: 25px;padding: 5px" align="center">
     Copyright © 2018玩伴后台管理系统
+</div>
+<div id="dlg" class="easyui-dialog" style="width:400px;height:200px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons">
+
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" id="userName" name="userName" readonly="readonly" value="${adminUser.adminName}" style="width: 200px"/></td>
+            </tr>
+            <tr>
+                <td>新密码：</td>
+                <td><input type="password" id="newPassword" name="newPassword" class="easyui-validatebox" required="true" style="width: 200px"/></td>
+            </tr>
+            <tr>
+                <td>确认新密码：</td>
+                <td><input type="password" id="newPassword2" name="newPassword2" class="easyui-validatebox" required="true" style="width: 200px"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:modifyPassword()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closePasswordModifyDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 
 </body>
