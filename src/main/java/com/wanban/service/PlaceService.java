@@ -20,4 +20,6 @@ public interface PlaceService {
     int addPlace(Place place);
 
     int updatePlace(Place place);
+
+    Place getPlace(double longitude, double latitude);
 }

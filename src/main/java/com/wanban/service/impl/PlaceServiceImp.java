@@ -2,6 +2,7 @@ package com.wanban.service.impl;
 
 import com.wanban.dao.PlaceMapper;
 import com.wanban.pojo.Place;
+import com.wanban.pojo.PlaceExample;
 import com.wanban.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,16 @@ public class PlaceServiceImp implements PlaceService {
     @Override
     public int updatePlace(Place place) {
         return placeMapper.updateByPrimaryKeySelective(place);
+    }
+
+    @Override
+    public Place getPlace(double longitude, double latitude) {
+        PlaceExample placeExample = new PlaceExample();
+        placeExample.createCriteria().andLongitudeEqualTo(longitude).andLatitudeEqualTo(latitude);
+        List<Place> placeList = placeMapper.selectByExample(placeExample);
+        if(!placeList.isEmpty()){
+            return placeList.get(0);
+        }
+        return null;
     }
 }
