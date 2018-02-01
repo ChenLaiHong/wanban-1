@@ -11,7 +11,6 @@
 <head>
     <title>后台主页</title>
 
-
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -42,6 +41,50 @@
             });
         }
 
+        function openPasswordModifyDialog(){
+            $("#dlg").dialog("open").dialog("setTitle","修改密码");
+            url="${pageContext.request.contextPath}/admin/modifyPassword.do?adminId=${adminUser.adminId}";
+        }
+
+        function modifyPassword(){
+            $("#fm").form("submit",{
+                url:url,
+                onSubmit:function(){
+                    var newPassword=$("#newPassword").val();
+                    var newPassword2=$("#newPassword2").val();
+                    if(!$(this).form("validate")){
+                        return false;
+                    }
+                    if(newPassword!=newPassword2){
+                        $.messager.alert("系统提示","确认密码输入错误！");
+                        return false;
+                    }
+                    return true;
+                },
+                success:function(result){
+                    var result=eval('('+result+')');
+                    if(result.success){
+                        $.messager.alert("系统提示","密码修改成功，下一次登录生效！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                    }else{
+                        $.messager.alert("系统提示","密码修改失败！");
+                        return;
+                    }
+                }
+            });
+        }
+
+        function closePasswordModifyDialog(){
+            resetValue();
+            $("#dlg").dialog("close");
+        }
+
+        function resetValue(){
+            $("#newPassword").val("");
+            $("#newPassword2").val("");
+        }
+
 
     </script>
 </head>
@@ -55,7 +98,7 @@
                 </div>
             </td>
             <td valign="bottom" align="right" width="50%">
-                <font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${adminUser}</font>
+                <font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${adminUser.adminName}</font>
             </td>
         </tr>
     </table>
@@ -87,13 +130,38 @@
             <a href="javascript:openTab('反馈信息管理','toFeedBack.do','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">反馈信息管理</a>
         </div>
         <div title="管理员设置"  data-options="iconCls:'icon-system'" style="padding:10px">
-            <a href="javascript:openTab('xxx','xxx','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px">修改密码</a>
+            <a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
             <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
         </div>
     </div>
 </div>
 <div region="south" style="height: 25px;padding: 5px" align="center">
     Copyright © 2018玩伴后台管理系统
+</div>
+<div id="dlg" class="easyui-dialog" style="width:400px;height:200px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons">
+
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" id="userName" name="userName" readonly="readonly" value="${adminUser.adminName}" style="width: 200px"/></td>
+            </tr>
+            <tr>
+                <td>新密码：</td>
+                <td><input type="password" id="newPassword" name="newPassword" class="easyui-validatebox" required="true" style="width: 200px"/></td>
+            </tr>
+            <tr>
+                <td>确认新密码：</td>
+                <td><input type="password" id="newPassword2" name="newPassword2" class="easyui-validatebox" required="true" style="width: 200px"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:modifyPassword()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closePasswordModifyDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 
 </body>

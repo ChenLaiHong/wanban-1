@@ -2,11 +2,11 @@ package com.wanban.dao;
 
 import com.wanban.pojo.User;
 import com.wanban.pojo.UserExample;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserMapper {

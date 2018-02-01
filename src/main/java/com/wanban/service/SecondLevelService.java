@@ -1,7 +1,5 @@
 package com.wanban.service;
 
-import com.wanban.pojo.SecondLevel;
-
 import java.util.List;
 import java.util.Map;
 
@@ -11,19 +9,19 @@ import java.util.Map;
 public interface SecondLevelService {
     int getFirstLevelById(int i);
 
-    List<SecondLevel> list(Map<String, Object> map);
+    List<com.wanban.pojo.SecondLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
 
     int deleteSecond(int i);
 
-    int addSecond(SecondLevel secondLevel);
+    int addSecond(com.wanban.pojo.SecondLevel secondLevel);
 
-    int updateSecond(SecondLevel secondLevel);
+    int updateSecond(com.wanban.pojo.SecondLevel secondLevel);
 
     String getImageName(Integer secondId);
 
-    List<SecondLevel> getAllSecond(int firstId);
+    List<com.wanban.pojo.SecondLevel> getAllSecond(int firstId);
 
-    SecondLevel getSecondById(int secondId);
+    com.wanban.pojo.SecondLevel getSecondById(int secondId);
 }

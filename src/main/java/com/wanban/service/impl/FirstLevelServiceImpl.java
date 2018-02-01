@@ -1,8 +1,6 @@
 package com.wanban.service.impl;
 
 import com.wanban.dao.FirstLevelMapper;
-import com.wanban.pojo.FirstLevel;
-import com.wanban.pojo.FirstLevelExample;
 import com.wanban.service.FirstLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +18,7 @@ public class FirstLevelServiceImpl implements FirstLevelService {
 
 
     @Override
-    public List<FirstLevel> list(Map<String, Object> map) {
+    public List<com.wanban.pojo.FirstLevel> list(Map<String, Object> map) {
         return firstLevelMapper.list(map);
     }
 
@@ -30,13 +28,13 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     }
 
     @Override
-    public int add(FirstLevel firstLevel) {
+    public int add(com.wanban.pojo.FirstLevel firstLevel) {
 
         return firstLevelMapper.insertSelective(firstLevel);
     }
 
     @Override
-    public int update(FirstLevel firstLevel) {
+    public int update(com.wanban.pojo.FirstLevel firstLevel) {
         return firstLevelMapper.updateByPrimaryKeySelective(firstLevel);
     }
 
@@ -46,8 +44,8 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     }
 
     @Override
-    public List<FirstLevel> getAllFirstLevel() {
-        List<FirstLevel> list = firstLevelMapper.selectByExample(null);
+    public List<com.wanban.pojo.FirstLevel> getAllFirstLevel() {
+        List<com.wanban.pojo.FirstLevel> list = firstLevelMapper.selectByExample(null);
         return  list;
     }
 
@@ -57,7 +55,7 @@ public class FirstLevelServiceImpl implements FirstLevelService {
     }
 
     @Override
-    public FirstLevel getFirstLevelId(int i) {
+    public com.wanban.pojo.FirstLevel getFirstLevelId(int i) {
         return firstLevelMapper.selectByPrimaryKey(i);
     }
 

@@ -1001,6 +1001,66 @@ public class UserExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andAdmireCountIsNull() {
+            addCriterion("admire_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountIsNotNull() {
+            addCriterion("admire_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountEqualTo(Integer value) {
+            addCriterion("admire_count =", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountNotEqualTo(Integer value) {
+            addCriterion("admire_count <>", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountGreaterThan(Integer value) {
+            addCriterion("admire_count >", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("admire_count >=", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountLessThan(Integer value) {
+            addCriterion("admire_count <", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountLessThanOrEqualTo(Integer value) {
+            addCriterion("admire_count <=", value, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountIn(List<Integer> values) {
+            addCriterion("admire_count in", values, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountNotIn(List<Integer> values) {
+            addCriterion("admire_count not in", values, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountBetween(Integer value1, Integer value2) {
+            addCriterion("admire_count between", value1, value2, "admireCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdmireCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("admire_count not between", value1, value2, "admireCount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

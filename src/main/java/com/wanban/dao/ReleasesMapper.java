@@ -1,18 +1,17 @@
 package com.wanban.dao;
 
 import com.wanban.pojo.Releases;
-import com.wanban.pojo.ReleasesExample;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public interface ReleasesMapper {
-    long countByExample(ReleasesExample example);
+    long countByExample(com.wanban.pojo.ReleasesExample example);
 
-    int deleteByExample(ReleasesExample example);
+    int deleteByExample(com.wanban.pojo.ReleasesExample example);
 
     int deleteByPrimaryKey(Integer releaseId);
 
@@ -20,13 +19,13 @@ public interface ReleasesMapper {
 
     int insertSelective(Releases record);
 
-    List<Releases> selectByExample(ReleasesExample example);
+    List<Releases> selectByExample(com.wanban.pojo.ReleasesExample example);
 
     Releases selectByPrimaryKey(Integer releaseId);
 
-    int updateByExampleSelective(@Param("record") Releases record, @Param("example") ReleasesExample example);
+    int updateByExampleSelective(@Param("record") Releases record, @Param("example") com.wanban.pojo.ReleasesExample example);
 
-    int updateByExample(@Param("record") Releases record, @Param("example") ReleasesExample example);
+    int updateByExample(@Param("record") Releases record, @Param("example") com.wanban.pojo.ReleasesExample example);
 
     int updateByPrimaryKeySelective(Releases record);
 

@@ -1,7 +1,5 @@
 package com.wanban.dao;
 
-import com.wanban.pojo.FirstLevel;
-import com.wanban.pojo.FirstLevelExample;
 import java.util.List;
 import java.util.Map;
 
@@ -10,31 +8,31 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FirstLevelMapper {
-    long countByExample(FirstLevelExample example);
+    long countByExample(com.wanban.pojo.FirstLevelExample example);
 
-    int deleteByExample(FirstLevelExample example);
+    int deleteByExample(com.wanban.pojo.FirstLevelExample example);
 
     int deleteByPrimaryKey(Integer firstId);
 
-    int insert(FirstLevel record);
+    int insert(com.wanban.pojo.FirstLevel record);
 
-    int insertSelective(FirstLevel record);
+    int insertSelective(com.wanban.pojo.FirstLevel record);
 
-    List<FirstLevel> selectByExample(FirstLevelExample example);
+    List<com.wanban.pojo.FirstLevel> selectByExample(com.wanban.pojo.FirstLevelExample example);
 
-    FirstLevel selectByPrimaryKey(Integer firstId);
+    com.wanban.pojo.FirstLevel selectByPrimaryKey(Integer firstId);
 
-    int updateByExampleSelective(@Param("record") FirstLevel record, @Param("example") FirstLevelExample example);
+    int updateByExampleSelective(@Param("record") com.wanban.pojo.FirstLevel record, @Param("example") com.wanban.pojo.FirstLevelExample example);
 
-    int updateByExample(@Param("record") FirstLevel record, @Param("example") FirstLevelExample example);
+    int updateByExample(@Param("record") com.wanban.pojo.FirstLevel record, @Param("example") com.wanban.pojo.FirstLevelExample example);
 
-    int updateByPrimaryKeySelective(FirstLevel record);
+    int updateByPrimaryKeySelective(com.wanban.pojo.FirstLevel record);
 
-    int updateByPrimaryKey(FirstLevel record);
+    int updateByPrimaryKey(com.wanban.pojo.FirstLevel record);
 
-    List<FirstLevel> list(Map<String, Object> map);
+    List<com.wanban.pojo.FirstLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
 
-    List<FirstLevel> countList();
+    List<com.wanban.pojo.FirstLevel> countList();
 }

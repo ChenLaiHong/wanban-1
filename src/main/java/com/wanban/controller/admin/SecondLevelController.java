@@ -3,11 +3,9 @@ package com.wanban.controller.admin;
 import com.wanban.pojo.Massage;
 import com.wanban.pojo.PageBean;
 import com.wanban.pojo.SecondLevel;
-import com.wanban.service.FirstLevelService;
 import com.wanban.service.SecondLevelService;
 import com.wanban.utils.DateUtil;
 import com.wanban.utils.ResponseUtil;
-import com.wanban.utils.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +41,7 @@ public class SecondLevelController {
                 Integer.parseInt(rows));
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("secondName", StringUtil.formatLike(a_secondLevel.getSecondName()));
+        map.put("secondName", com.wanban.utils.StringUtil.formatLike(a_secondLevel.getSecondName()));
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<SecondLevel> secondList = secondLevelService.list(map);

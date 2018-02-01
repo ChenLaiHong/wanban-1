@@ -2,9 +2,10 @@ package com.wanban.dao;
 
 import com.wanban.pojo.Admin;
 import com.wanban.pojo.AdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AdminMapper {

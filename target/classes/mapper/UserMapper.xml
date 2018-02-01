@@ -15,6 +15,7 @@
     <result column="hobby" jdbcType="VARCHAR" property="hobby" />
     <result column="birth" jdbcType="DATE" property="birth" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="admire_count" jdbcType="INTEGER" property="admireCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,21 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     user_id, user_name, password, sex, phone, email, sign, image_name, grade, city, hobby, 
-    birth, create_time
+    birth, create_time, admire_count
   </sql>
-
-  <!-- list集合 -->
-  <select id="list" parameterType="Map" resultMap="BaseResultMap">
-    select * from user
-    <if test="start!=null and size!=null">
-      limit #{start},#{size}
-    </if>
-  </select>
-  <!-- getTotal -->
-  <select id="getTotal" parameterType="Map" resultType="Long">
-    select count(*) from user
-  </select>
-
   <select id="selectByExample" parameterType="com.wanban.pojo.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -111,6 +99,18 @@
     from user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <!-- list集合 -->
+  <select id="list" parameterType="Map" resultMap="BaseResultMap">
+    select * from user
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+  <!-- getTotal -->
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from user
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
@@ -125,13 +125,13 @@
     insert into user (user_id, user_name, password, 
       sex, phone, email, 
       sign, image_name, grade, 
-      city, hobby, birth, create_time
-      )
+      city, hobby, birth, create_time, 
+      admire_count)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{sign,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, 
-      #{city,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{city,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{admireCount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wanban.pojo.User">
     insert into user
@@ -175,6 +175,9 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="admireCount != null">
+        admire_count,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -215,6 +218,9 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admireCount != null">
+        #{admireCount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -266,6 +272,9 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.admireCount != null">
+        admire_count = #{record.admireCount,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -285,7 +294,8 @@
       city = #{record.city,jdbcType=VARCHAR},
       hobby = #{record.hobby,jdbcType=VARCHAR},
       birth = #{record.birth,jdbcType=DATE},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      admire_count = #{record.admireCount,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -329,6 +339,9 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="admireCount != null">
+        admire_count = #{admireCount,jdbcType=INTEGER},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -345,7 +358,8 @@
       city = #{city,jdbcType=VARCHAR},
       hobby = #{hobby,jdbcType=VARCHAR},
       birth = #{birth,jdbcType=DATE},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      admire_count = #{admireCount,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

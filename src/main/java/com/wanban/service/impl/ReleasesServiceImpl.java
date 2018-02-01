@@ -1,8 +1,6 @@
 package com.wanban.service.impl;
 
-import com.wanban.dao.ReleasesMapper;
 import com.wanban.pojo.Releases;
-import com.wanban.service.ReleasesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +11,9 @@ import java.util.Map;
  * Created by CHLaih on 2018/1/24.
  */
 @Service
-public class ReleasesServiceImpl implements ReleasesService {
+public class ReleasesServiceImpl implements com.wanban.service.ReleasesService {
     @Autowired
-    private ReleasesMapper releasesMapper;
+    private com.wanban.dao.ReleasesMapper releasesMapper;
 
 
     @Override
@@ -35,6 +33,6 @@ public class ReleasesServiceImpl implements ReleasesService {
 
     @Override
     public void update(Releases releases) {
-        releasesMapper.updateByPrimaryKey(releases);
+        releasesMapper.updateByPrimaryKeySelective(releases);
     }
 }

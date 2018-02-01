@@ -1,7 +1,5 @@
 package com.wanban.dao;
 
-import com.wanban.pojo.SecondLevel;
-import com.wanban.pojo.SecondLevelExample;
 import java.util.List;
 import java.util.Map;
 
@@ -10,31 +8,31 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SecondLevelMapper {
-    long countByExample(SecondLevelExample example);
+    long countByExample(com.wanban.pojo.SecondLevelExample example);
 
-    int deleteByExample(SecondLevelExample example);
+    int deleteByExample(com.wanban.pojo.SecondLevelExample example);
 
     int deleteByPrimaryKey(Integer secondId);
 
-    int insert(SecondLevel record);
+    int insert(com.wanban.pojo.SecondLevel record);
 
-    int insertSelective(SecondLevel record);
+    int insertSelective(com.wanban.pojo.SecondLevel record);
 
-    List<SecondLevel> selectByExample(SecondLevelExample example);
+    List<com.wanban.pojo.SecondLevel> selectByExample(com.wanban.pojo.SecondLevelExample example);
 
-    SecondLevel selectByPrimaryKey(Integer secondId);
+    com.wanban.pojo.SecondLevel selectByPrimaryKey(Integer secondId);
 
-    int updateByExampleSelective(@Param("record") SecondLevel record, @Param("example") SecondLevelExample example);
+    int updateByExampleSelective(@Param("record") com.wanban.pojo.SecondLevel record, @Param("example") com.wanban.pojo.SecondLevelExample example);
 
-    int updateByExample(@Param("record") SecondLevel record, @Param("example") SecondLevelExample example);
+    int updateByExample(@Param("record") com.wanban.pojo.SecondLevel record, @Param("example") com.wanban.pojo.SecondLevelExample example);
 
-    int updateByPrimaryKeySelective(SecondLevel record);
+    int updateByPrimaryKeySelective(com.wanban.pojo.SecondLevel record);
 
-    int updateByPrimaryKey(SecondLevel record);
+    int updateByPrimaryKey(com.wanban.pojo.SecondLevel record);
 
     int getFirstLevelById(int firstId);
 
-    List<SecondLevel> list(Map<String, Object> map);
+    List<com.wanban.pojo.SecondLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
 }

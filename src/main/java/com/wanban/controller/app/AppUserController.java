@@ -1,17 +1,16 @@
 package com.wanban.controller.app;
 
-import com.wanban.pojo.Massage;
 import com.wanban.pojo.User;
 import com.wanban.service.UserService;
-import com.wanban.utils.DateUtil;
-import net.sf.json.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class AppUserController
     public int updateUser(@RequestParam("imageFile") MultipartFile imageFile,User user, HttpServletRequest request)throws Exception{
 
             String filePath = request.getServletContext().getRealPath("/");
-            String imageName = DateUtil.getCurrentDateStr() + "."
+            String imageName = com.wanban.utils.DateUtil.getCurrentDateStr() + "."
                     + imageFile.getOriginalFilename().split("\\.")[1];
             imageFile.transferTo(new File(filePath + "static/levelImages/"
                     + imageName));

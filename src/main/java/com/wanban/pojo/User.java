@@ -29,10 +29,13 @@ public class User {
 
     private Date createTime;
 
-    public User(){
-        super();
+    private Integer admireCount;
+
+    public User() {
     }
-    public User(Integer userId, String userName, String password, String sex, String phone, String email, String sign, String imageName, Integer grade, String city, String hobby, Date birth, Date createTime) {
+
+    public User(Integer userId, String userName, String password, String sex, String phone, String email, String sign,
+                String imageName, Integer grade, String city, String hobby, Date birth, Date createTime, Integer admireCount) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -46,6 +49,7 @@ public class User {
         this.hobby = hobby;
         this.birth = birth;
         this.createTime = createTime;
+        this.admireCount = admireCount;
     }
 
     public Integer getUserId() {
@@ -150,5 +154,13 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getAdmireCount() {
+        return admireCount;
+    }
+
+    public void setAdmireCount(Integer admireCount) {
+        this.admireCount = admireCount;
     }
 }

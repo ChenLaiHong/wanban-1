@@ -1,10 +1,6 @@
 package com.wanban.service.impl;
 
 import com.wanban.dao.SecondLevelMapper;
-import com.wanban.pojo.FirstLevel;
-import com.wanban.pojo.SecondLevel;
-import com.wanban.pojo.SecondLevelExample;
-import com.wanban.service.SecondLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +11,7 @@ import java.util.Map;
  * Created by CHLaih on 2018/1/18.
  */
 @Service
-public class SecondLevelServiceImpl implements SecondLevelService{
+public class SecondLevelServiceImpl implements com.wanban.service.SecondLevelService {
     @Autowired
     private SecondLevelMapper secondLevelMapper;
 
@@ -25,7 +21,7 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     }
 
     @Override
-    public List<SecondLevel> list(Map<String, Object> map) {
+    public List<com.wanban.pojo.SecondLevel> list(Map<String, Object> map) {
         return secondLevelMapper.list(map);
     }
 
@@ -40,12 +36,12 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     }
 
     @Override
-    public int addSecond(SecondLevel secondLevel) {
+    public int addSecond(com.wanban.pojo.SecondLevel secondLevel) {
         return secondLevelMapper.insertSelective(secondLevel);
     }
 
     @Override
-    public int updateSecond(SecondLevel secondLevel) {
+    public int updateSecond(com.wanban.pojo.SecondLevel secondLevel) {
         return secondLevelMapper.updateByPrimaryKeySelective(secondLevel);
     }
 
@@ -55,15 +51,15 @@ public class SecondLevelServiceImpl implements SecondLevelService{
     }
 
     @Override
-    public List<SecondLevel> getAllSecond(int firstId) {
-        SecondLevelExample secondLevelExample = new SecondLevelExample();
-        SecondLevelExample.Criteria criteria = secondLevelExample.createCriteria();
+    public List<com.wanban.pojo.SecondLevel> getAllSecond(int firstId) {
+        com.wanban.pojo.SecondLevelExample secondLevelExample = new com.wanban.pojo.SecondLevelExample();
+        com.wanban.pojo.SecondLevelExample.Criteria criteria = secondLevelExample.createCriteria();
         criteria.andFirstIdEqualTo(firstId);
         return secondLevelMapper.selectByExample(secondLevelExample);
     }
 
     @Override
-    public SecondLevel getSecondById(int secondId) {
+    public com.wanban.pojo.SecondLevel getSecondById(int secondId) {
         return secondLevelMapper.selectByPrimaryKey(secondId);
     }
 

@@ -1,7 +1,5 @@
 package com.wanban.service;
 
-import com.wanban.pojo.FirstLevel;
-
 import java.util.List;
 import java.util.Map;
 
@@ -9,21 +7,21 @@ import java.util.Map;
  * Created by 赖红 on 2018/1/18.
  */
 public interface FirstLevelService {
-    List<FirstLevel> list(Map<String, Object> map);
+    List<com.wanban.pojo.FirstLevel> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
 
-    int add(FirstLevel firstLevel);
+    int add(com.wanban.pojo.FirstLevel firstLevel);
 
-    int update(FirstLevel firstLevel);
+    int update(com.wanban.pojo.FirstLevel firstLevel);
 
     int delete(int i);
 
-    List<FirstLevel> getAllFirstLevel();
+    List<com.wanban.pojo.FirstLevel> getAllFirstLevel();
 
     String getImageName(int firstId);
 
-    FirstLevel getFirstLevelId(int i);
+    com.wanban.pojo.FirstLevel getFirstLevelId(int i);
 
 
 }

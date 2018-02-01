@@ -1,8 +1,6 @@
 package com.wanban.controller.admin;
 
-import com.wanban.pojo.Admin;
 import com.wanban.service.AdminService;
-import com.wanban.utils.MdUtil;
 import com.wanban.utils.ResponseUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +23,8 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping(value={"/login"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
-    public String login(Admin admin, HttpServletRequest request){
-           Admin a = this.adminService.login(admin);
+    public String login(com.wanban.pojo.Admin admin, HttpServletRequest request){
+           com.wanban.pojo.Admin a = this.adminService.login(admin);
            System.out.print("用户名---"+admin.getAdminName());
            if(admin.getAdminName() == null || admin.getAdminName() == ""){
                request.setAttribute("errorInfo", "用户名不能为空！");
@@ -52,8 +50,8 @@ public class AdminController {
 
     @RequestMapping("/modifyPassword")
     public String modifyPassword(@RequestParam(value ="adminId") int adminId, @RequestParam(value = "newPassword") String newPassword, HttpServletResponse response) throws Exception {
-        Admin admin = adminService.find(adminId);
-        admin.setAdminPass(MdUtil.md5(newPassword));
+        com.wanban.pojo.Admin admin = adminService.find(adminId);
+        admin.setAdminPass(com.wanban.utils.MdUtil.md5(newPassword));
        int result = adminService.update(admin);
         JSONObject result1=new JSONObject();
         if(result>0){

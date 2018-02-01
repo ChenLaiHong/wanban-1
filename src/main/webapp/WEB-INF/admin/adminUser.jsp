@@ -34,6 +34,7 @@
         <th field="email" width="100" align="center">邮箱</th>
         <th field="sign" width="100" align="center">个性签名</th>
         <th field="createTime" width="100" align="center">注册时间</th>
+        <th field="admireCount" width="20" align="center">点赞数</th>
     </tr>
     </thead>
 </table>

@@ -49,7 +49,7 @@
         <th field="sportTime" width="50" align="center">运动时间</th>
         <th field="types" width="50" align="center">运动类型</th>
         <th field="releaseTime" width="50" align="center">发布时间</th>
-        <th field="questionStatus" width="50" align="center" formatter="formatState">状态</th>
+        <th field="status" width="50" align="center" formatter="formatState">状态</th>
     </tr>
     </thead>
 </table>
