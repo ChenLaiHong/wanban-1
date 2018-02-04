@@ -19,4 +19,6 @@ public interface UserService {
     User getUser(int userId);
 
     int updateUser(User user);
+
+    void updateAdmireCount(Integer admiredUserId);
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static com.wanban.utils.JsonUtils.objectToJson;
+
 /**
  * Created by CHLaih on 2018/2/1.
  */
@@ -22,6 +24,7 @@ public class AppPlaceController {
     public String getPlace(@RequestParam(value = "longitude", required = true) double longitude,
                            @RequestParam(value = "latitude",required = true) double latitude){
         Place place = placeService.getPlace(longitude,latitude);
-        return null;
+
+        return place != null ? objectToJson(place) : "0";
     }
 }

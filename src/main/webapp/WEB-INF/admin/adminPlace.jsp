@@ -46,7 +46,7 @@
                 }
             });
         }
-        function openPlaceAddModifyDialog(){
+        function openPlaceAddDialog(){
             $("#dlg").dialog("open").dialog("setTitle","添加场所信息");
             url="${APP_PATH}/admin/place/save.do";
         }
@@ -59,8 +59,6 @@
                 return;
             }
             var row=selectedRows[0];
-            getFirstLevel();
-            getImageName(row);
             $("#dlg").dialog("open").dialog("setTitle","编辑场所信息");
             $("#fm").form("load",row);
             url="${APP_PATH}/admin/place/save.do?placeId="+row.placeId;

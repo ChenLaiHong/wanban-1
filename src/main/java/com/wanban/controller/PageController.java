@@ -46,4 +46,9 @@ public class PageController {
     public String releaseOut(){
         return "admin/adminReleaseOut";
     }
+
+    @RequestMapping({"/toPlace"})
+    public String place(){
+        return "admin/adminPlace";
+    }
 }
