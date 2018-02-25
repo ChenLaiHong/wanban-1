@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanban.dao.PlaceMapper">
+  <resultMap id="BaseResultMap" type="com.wanban.pojo.Place">
+    <id column="place_id" jdbcType="INTEGER" property="placeId" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="place_sports" jdbcType="VARCHAR" property="placeSports" />
+    <result column="place_level" jdbcType="VARCHAR" property="placeLevel" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    place_id, place_name, place_sports, place_level, longitude, latitude
+  </sql>
+  <select id="selectByExample" parameterType="com.wanban.pojo.PlaceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from place
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </select>
+  <!-- list集合 -->
+  <select id="list" parameterType="Map" resultMap="BaseResultMap">
+    select * from place
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+  <!-- getTotal -->
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from place
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from place
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wanban.pojo.PlaceExample">
+    delete from place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wanban.pojo.Place">
+    insert into place (place_id, place_name, place_sports, 
+      place_level, longitude, latitude
+      )
+    values (#{placeId,jdbcType=INTEGER}, #{placeName,jdbcType=VARCHAR}, #{placeSports,jdbcType=VARCHAR}, 
+      #{placeLevel,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanban.pojo.Place">
+    insert into place
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="placeId != null">
+        place_id,
+      </if>
+      <if test="placeName != null">
+        place_name,
+      </if>
+      <if test="placeSports != null">
+        place_sports,
+      </if>
+      <if test="placeLevel != null">
+        place_level,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="placeId != null">
+        #{placeId,jdbcType=INTEGER},
+      </if>
+      <if test="placeName != null">
+        #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeSports != null">
+        #{placeSports,jdbcType=VARCHAR},
+      </if>
+      <if test="placeLevel != null">
+        #{placeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wanban.pojo.PlaceExample" resultType="java.lang.Long">
+    select count(*) from place
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update place
+    <set>
+      <if test="record.placeId != null">
+        place_id = #{record.placeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.placeName != null">
+        place_name = #{record.placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeSports != null">
+        place_sports = #{record.placeSports,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeLevel != null">
+        place_level = #{record.placeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update place
+    set place_id = #{record.placeId,jdbcType=INTEGER},
+      place_name = #{record.placeName,jdbcType=VARCHAR},
+      place_sports = #{record.placeSports,jdbcType=VARCHAR},
+      place_level = #{record.placeLevel,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanban.pojo.Place">
+    update place
+    <set>
+      <if test="placeName != null">
+        place_name = #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeSports != null">
+        place_sports = #{placeSports,jdbcType=VARCHAR},
+      </if>
+      <if test="placeLevel != null">
+        place_level = #{placeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanban.pojo.Place">
+    update place
+    set place_name = #{placeName,jdbcType=VARCHAR},
+      place_sports = #{placeSports,jdbcType=VARCHAR},
+      place_level = #{placeLevel,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE}
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </update>
+</mapper>
