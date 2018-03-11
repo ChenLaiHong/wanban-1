@@ -35,4 +35,24 @@ public interface UserMapper {
     List<User> list(Map<String, Object> map);
 
     Long getTotal(Map<String, Object> map);
+
+    User findUserByEmail(String email);
+
+    User findUserByPhone(String phone);
+
+    User selectUser(Integer userId);
+
+    void addUser(User User);
+
+    User findUserByName(String username);
+
+    User checkLogin(String username, String password);
+
+    boolean checkRegisterUsername(String username);
+
+    void loginout();
+
+    boolean checkRegisterEmail(String email);
+
+    boolean checkRegisterPhone(String phone);
 }

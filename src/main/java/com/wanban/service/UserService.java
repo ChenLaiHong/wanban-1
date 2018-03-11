@@ -21,4 +21,19 @@ public interface UserService {
     int updateUser(User user);
 
     void updateAdmireCount(Integer admiredUserId);
+
+    void addUser(User User);
+
+    User findUserByName(String username);
+
+    User checkLogin(String username, String password);
+
+    boolean checkRegisterUsername(String username);
+
+    void loginout();
+
+    boolean checkRegisterEmail(String email);
+
+    boolean checkRegisterPhone(String phone);
+
 }

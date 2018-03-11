@@ -362,4 +362,26 @@
       admire_count = #{admireCount,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <insert id="addUser"  parameterType="com.wanban.pojo.User">
+    INSERT INTO User(user_name, password) VALUES (#{userName},#{password})
+  </insert>
+
+  <select id="selectUser" resultType="com.wanban.pojo.User" parameterType="Integer">
+    SELECT * FROM User WHERE user_id = #{userId}
+  </select>
+
+
+  <select id="findUserByName" resultType="com.wanban.pojo.User" parameterType="String">
+    SELECT * FROM User WHERE user_name =#{userName}
+  </select>
+
+  <select id="findUserByEmail" resultType="com.wanban.pojo.User" parameterType="String">
+    SELECT * FROM User WHERE email = #{email}
+  </select>
+
+  <select id="findUserByPhone" resultType="com.wanban.pojo.User" parameterType="String">
+    SELECT * FROM User WHERE phone = #{phone}
+  </select>
+
 </mapper>

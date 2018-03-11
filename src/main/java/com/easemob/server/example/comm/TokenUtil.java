@@ -29,7 +29,7 @@ public class TokenUtil {
      * get token from server
      */
     static {
-        InputStream inputStream = TokenUtil.class.getClassLoader().getResourceAsStream("config.properties");
+        InputStream inputStream = TokenUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
         Properties prop = new Properties();
         try {
             prop.load(inputStream);

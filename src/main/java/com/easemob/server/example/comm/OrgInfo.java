@@ -16,7 +16,7 @@ public class OrgInfo {
     public static final Logger logger = LoggerFactory.getLogger(OrgInfo.class);
 
     static {
-        InputStream inputStream = OrgInfo.class.getClassLoader().getResourceAsStream("config.properties");
+        InputStream inputStream = OrgInfo.class.getClassLoader().getResourceAsStream("jdbc.properties");
         Properties prop = new Properties();
         try {
             prop.load(inputStream);
