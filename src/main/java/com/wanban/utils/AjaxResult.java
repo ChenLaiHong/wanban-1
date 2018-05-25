@@ -10,27 +10,6 @@ public class AjaxResult<T> {
     private String msg;
     private boolean hasError;
     private String error;
-    private T obj;
-    private List<T> list;
-    public List<T> getList() {
-        return list;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
-    }
-
-    public AjaxResult(){
-
-    }
-    public T getObj() {
-        return obj;
-    }
-
-    public void setObj(T obj) {
-        this.obj = obj;
-    }
-
 
     public AjaxResult(boolean success, String msg) {
         super();
